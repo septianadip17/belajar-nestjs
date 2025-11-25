@@ -1,0 +1,7 @@
+// user sent request via postman
+// controller / router
+// service / business logic
+// repository / db interaction
+// service
+// controller
+// sampai di customer (keliatan di postman response)
