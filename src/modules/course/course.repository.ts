@@ -1,12 +1,12 @@
 import { dbPool } from '../../config/database';
 import { Injectable } from '@nestjs/common';
 import { Course, CourseRow } from './course.interface';
-import { CreateCourseDto } from './course.model';
+import { CreateCourseDto, UpdateCourseDto } from './course.model';
 
 
 @Injectable()
 export class CourseRepository {
-  
+
   async findAllCourses(): Promise<Course[]> {
     const query = 'SELECT CourseID, CourseName, CourseLevel, DurationWeeks FROM Course';
     const [rows] = await dbPool.query(query) as [CourseRow[], any];
@@ -23,8 +23,13 @@ export class CourseRepository {
     const [result] = await dbPool.execute(query, [payload.name, payload.level, payload.durationInWeeks]);
   }
 
-  async deleteCourse(id: string){
+  async deleteCourse(id: string) {
     const query = 'DELETE FROM Course WHERE CourseID = ?';
     const [result] = await dbPool.execute(query, [id]);
+  }
+
+  async updateCourse(id: string, payload: UpdateCourseDto) {
+    const query = 'UPDATE Course SET CourseName = ?, CourseLevel = ?, DurationWeeks =? WHERE CourseID = ?';
+    const result = await dbPool.execute(query, [payload.name, payload.level, payload.durationInWeeks, id]);
   }
 }

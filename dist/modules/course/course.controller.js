@@ -16,6 +16,7 @@ exports.CourseController = void 0;
 const common_1 = require("@nestjs/common");
 const course_service_1 = require("./course.service");
 const course_model_1 = require("./course.model");
+const course_model_2 = require("./course.model");
 let CourseController = class CourseController {
     constructor(courseService) {
         this.courseService = courseService;
@@ -28,6 +29,10 @@ let CourseController = class CourseController {
     }
     async deleteCourse(id) {
         return await this.courseService.deleteCourse(id);
+    }
+    async updateCourse(id, payload) {
+        console.log(payload);
+        return await this.courseService.updateCourse(id, payload);
     }
 };
 exports.CourseController = CourseController;
@@ -51,6 +56,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CourseController.prototype, "deleteCourse", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, course_model_2.UpdateCourseDto]),
+    __metadata("design:returntype", Promise)
+], CourseController.prototype, "updateCourse", null);
 exports.CourseController = CourseController = __decorate([
     (0, common_1.Controller)('courses'),
     (0, common_1.Dependencies)(course_service_1.CourseService),

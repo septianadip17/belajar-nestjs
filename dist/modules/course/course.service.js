@@ -25,6 +25,9 @@ let CourseService = class CourseService {
     async deleteCourse(id) {
         return this.courseRepository.deleteCourse(id);
     }
+    async updateCourse(id, payload) {
+        return this.courseRepository.updateCourse(id, payload);
+    }
 };
 exports.CourseService = CourseService;
 exports.CourseService = CourseService = __decorate([

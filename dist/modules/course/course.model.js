@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateCourseDto = void 0;
+exports.UpdateCourseDto = exports.CreateCourseDto = void 0;
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
 class CreateCourseDto {
@@ -35,4 +35,27 @@ __decorate([
     (0, class_transformer_1.Expose)({ name: 'duration_in_weeks' }),
     __metadata("design:type", Number)
 ], CreateCourseDto.prototype, "durationInWeeks", void 0);
+class UpdateCourseDto {
+    constructor(name, level, durationInWeeks) {
+        this.name = name;
+        this.level = level;
+        this.durationInWeeks = durationInWeeks;
+    }
+}
+exports.UpdateCourseDto = UpdateCourseDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'name' }),
+    __metadata("design:type", String)
+], UpdateCourseDto.prototype, "name", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'level' }),
+    __metadata("design:type", String)
+], UpdateCourseDto.prototype, "level", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, class_transformer_1.Expose)({ name: 'duration_in_weeks' }),
+    __metadata("design:type", Number)
+], UpdateCourseDto.prototype, "durationInWeeks", void 0);
 //# sourceMappingURL=course.model.js.map

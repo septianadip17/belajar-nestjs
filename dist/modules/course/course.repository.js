@@ -28,6 +28,10 @@ let CourseRepository = class CourseRepository {
         const query = 'DELETE FROM Course WHERE CourseID = ?';
         const [result] = await database_1.dbPool.execute(query, [id]);
     }
+    async updateCourse(id, payload) {
+        const query = 'UPDATE Course SET CourseName = ?, CourseLevel = ?, DurationWeeks =? WHERE CourseID = ?';
+        const result = await database_1.dbPool.execute(query, [payload.name, payload.level, payload.durationInWeeks, id]);
+    }
 };
 exports.CourseRepository = CourseRepository;
 exports.CourseRepository = CourseRepository = __decorate([

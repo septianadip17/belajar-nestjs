@@ -4,3 +4,9 @@ export declare class CreateCourseDto {
     durationInWeeks: number;
     constructor(name: string, level: string, durationInWeeks: number);
 }
+export declare class UpdateCourseDto {
+    name: string;
+    level: string;
+    durationInWeeks: number;
+    constructor(name: string, level: string, durationInWeeks: number);
+}
