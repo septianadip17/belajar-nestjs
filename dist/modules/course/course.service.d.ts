@@ -5,4 +5,5 @@ export declare class CourseService {
     constructor(courseRepository: CourseRepository);
     findAllCourses(): Promise<import("./course.interface").Course[]>;
     createCourse(payload: CreateCourseDto): Promise<void>;
+    deleteCourse(id: string): Promise<void>;
 }

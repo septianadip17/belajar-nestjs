@@ -24,6 +24,10 @@ let CourseRepository = class CourseRepository {
         const query = 'INSERT INTO Course (CourseName, CourseLevel, DurationWeeks) VALUES (?, ?, ?)';
         const [result] = await database_1.dbPool.execute(query, [payload.name, payload.level, payload.durationInWeeks]);
     }
+    async deleteCourse(id) {
+        const query = 'DELETE FROM Course WHERE CourseID = ?';
+        const [result] = await database_1.dbPool.execute(query, [id]);
+    }
 };
 exports.CourseRepository = CourseRepository;
 exports.CourseRepository = CourseRepository = __decorate([

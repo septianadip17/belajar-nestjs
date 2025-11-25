@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Dependencies, Body } from "@nestjs/common";
+import { Controller, Get, Post, Delete, Dependencies, Body, Param } from "@nestjs/common";
 import { CourseService } from "./course.service";
 import { CreateCourseDto } from "./course.model";
 
@@ -16,4 +16,10 @@ export class CourseController {
     async createCourse(@Body() payload: CreateCourseDto) {
         return await this.courseService.createCourse(payload);
     }
+
+    @Delete(':id')
+    async deleteCourse(@Param('id') id: string){
+        return await this.courseService.deleteCourse(id)
+    }
+
 }

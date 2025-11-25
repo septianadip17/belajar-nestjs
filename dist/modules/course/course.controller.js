@@ -26,6 +26,9 @@ let CourseController = class CourseController {
     async createCourse(payload) {
         return await this.courseService.createCourse(payload);
     }
+    async deleteCourse(id) {
+        return await this.courseService.deleteCourse(id);
+    }
 };
 exports.CourseController = CourseController;
 __decorate([
@@ -41,6 +44,13 @@ __decorate([
     __metadata("design:paramtypes", [course_model_1.CreateCourseDto]),
     __metadata("design:returntype", Promise)
 ], CourseController.prototype, "createCourse", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CourseController.prototype, "deleteCourse", null);
 exports.CourseController = CourseController = __decorate([
     (0, common_1.Controller)('courses'),
     (0, common_1.Dependencies)(course_service_1.CourseService),

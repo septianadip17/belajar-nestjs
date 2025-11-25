@@ -14,4 +14,8 @@ export class CourseService {
     async createCourse(payload: CreateCourseDto) {
         return this.courseRepository.createCourse(payload);
     }
+
+    async deleteCourse(id: string){
+        return this.courseRepository.deleteCourse(id)
+    }
 }
