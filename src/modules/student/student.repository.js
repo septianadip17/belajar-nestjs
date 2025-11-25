@@ -4,7 +4,8 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class StudentRepository {
   async findAllStudents(){
-    const [rows] = await dbPool.query('SELECT StudentID, Name FROM Student');
+    let query = 'SELECT StudentID, Name FROM Student';
+    const [rows] = await dbPool.query(query);
     // Transform the result: rename StudentID to id, Name to StudentName
     return rows.map(row => ({
       id: row.StudentID,
