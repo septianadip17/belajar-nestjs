@@ -1,12 +1,10 @@
 import { Injectable, Dependencies } from "@nestjs/common";
-import { StudentRepository } from "./student.repository.js";
+import { StudentRepository } from "./student.repository";
 
 @Injectable()
 @Dependencies(StudentRepository)
 export class StudentService {
-  constructor(studentRepository) {
-    this.studentRepository = studentRepository;
-  }
+  constructor(private studentRepository: StudentRepository) {}
 
   async findAllStudents() {
     return this.studentRepository.findAllStudents();

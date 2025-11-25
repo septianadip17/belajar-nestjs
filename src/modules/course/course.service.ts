@@ -4,9 +4,7 @@ import { CourseRepository } from "./course.repository";
 @Injectable()
 @Dependencies(CourseRepository)
 export class CourseService {
-    constructor(courseRepository) {
-        this.courseRepository = courseRepository
-    }
+    constructor(private courseRepository: CourseRepository) {}
 
     async findAllCourses() {
         return this.courseRepository.findAllCourses();
