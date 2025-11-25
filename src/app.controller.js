@@ -7,9 +7,14 @@ export class AppController {
   constructor(appService) {
     this.appService = appService;
   }
+  
+  @Get('hello')
+  sayHello() {
+    return { "message": "Hello from new endpoint!" };
+  }
 
-  @Get()
+  @Get('/')
   getHello() {
-    return this.appService.getHello();
+    return this.appService.getHello("Hello World!");
   }
 }
