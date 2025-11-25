@@ -20,6 +20,10 @@ let CourseRepository = class CourseRepository {
             duration_in_weeks: row.DurationWeeks,
         }));
     }
+    async createCourse(payload) {
+        const query = 'INSERT INTO Course (CourseName, CourseLevel, DurationWeeks) VALUES (?, ?, ?)';
+        const [result] = await database_1.dbPool.execute(query, [payload.name, payload.level, payload.durationInWeeks]);
+    }
 };
 exports.CourseRepository = CourseRepository;
 exports.CourseRepository = CourseRepository = __decorate([

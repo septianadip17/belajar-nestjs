@@ -19,6 +19,9 @@ let CourseService = class CourseService {
     async findAllCourses() {
         return this.courseRepository.findAllCourses();
     }
+    async createCourse(payload) {
+        return this.courseRepository.createCourse(payload);
+    }
 };
 exports.CourseService = CourseService;
 exports.CourseService = CourseService = __decorate([

@@ -1,9 +1,6 @@
-export interface Course {
-    id: number;
-    name: string;
-    level: string;
-    duration_in_weeks: number;
-}
+import { Course } from './course.interface';
+import { CreateCourseDto } from './course.model';
 export declare class CourseRepository {
     findAllCourses(): Promise<Course[]>;
+    createCourse(payload: CreateCourseDto): Promise<void>;
 }

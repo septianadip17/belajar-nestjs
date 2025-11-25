@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Dependencies, Body } from "@nestjs/common";
 import { CourseService } from "./course.service";
+import { CreateCourseDto } from "./course.model";
 
 @Controller('courses')
 @Dependencies(CourseService)
@@ -12,8 +13,7 @@ export class CourseController {
     }
 
     @Post()
-    async createCourse(@Body() payload: any) {
-        console.log(payload);
-        return payload;
+    async createCourse(@Body() payload: CreateCourseDto) {
+        return await this.courseService.createCourse(payload);
     }
 }

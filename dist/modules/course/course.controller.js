@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CourseController = void 0;
 const common_1 = require("@nestjs/common");
 const course_service_1 = require("./course.service");
+const course_model_1 = require("./course.model");
 let CourseController = class CourseController {
     constructor(courseService) {
         this.courseService = courseService;
@@ -23,8 +24,7 @@ let CourseController = class CourseController {
         return await this.courseService.findAllCourses();
     }
     async createCourse(payload) {
-        console.log(payload);
-        return payload;
+        return await this.courseService.createCourse(payload);
     }
 };
 exports.CourseController = CourseController;
@@ -38,7 +38,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [course_model_1.CreateCourseDto]),
     __metadata("design:returntype", Promise)
 ], CourseController.prototype, "createCourse", null);
 exports.CourseController = CourseController = __decorate([
