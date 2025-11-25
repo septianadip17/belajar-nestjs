@@ -2,9 +2,9 @@ import {dbPool} from '../../config/database.js';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class UserRepository {
+export class StudentRepository {
   async findAllStudents(){
-    const [rows] = await dbPool.query('SELECT StudentID, Name FROM Students');
+    const [rows] = await dbPool.query('SELECT StudentID, Name FROM Student');
     // Transform the result: rename StudentID to id, Name to StudentName
     return rows.map(row => ({
       id: row.StudentID,

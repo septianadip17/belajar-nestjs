@@ -1,9 +1,9 @@
 import {Controller, Get, Dependencies} from '@nestjs/common';
-import {StudentService} from './student.service.js';
+import {StudentService} from './student.service';
 
 @Controller('students')
-@Dependecies(StudentService)
-export class UserController {
+@Dependencies(StudentService)
+export class StudentController {
   constructor(studentService) {
     this.studentService = studentService;
   }
