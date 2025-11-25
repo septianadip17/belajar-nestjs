@@ -28,6 +28,9 @@ let CourseService = class CourseService {
     async updateCourse(id, payload) {
         return this.courseRepository.updateCourse(id, payload);
     }
+    async getCoursebyId(id) {
+        return this.courseRepository.getCourseById(id);
+    }
 };
 exports.CourseService = CourseService;
 exports.CourseService = CourseService = __decorate([

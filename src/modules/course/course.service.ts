@@ -22,4 +22,8 @@ export class CourseService {
     async updateCourse(id: string, payload: UpdateCourseDto){
         return this.courseRepository.updateCourse(id, payload)
     }
+
+    async getCoursebyId(id: string){
+        return this.courseRepository.getCourseById(id)
+    }
 }

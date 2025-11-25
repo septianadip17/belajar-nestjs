@@ -34,7 +34,11 @@ export class CourseController {
 
   @Put(':id')
   async updateCourse(@Param('id') id: string, @Body() payload: UpdateCourseDto) {
-    console.log(payload)
     return await this.courseService.updateCourse(id, payload)
+  }
+
+  @Get(':id')
+  async getCourseById(@Param('id') id: string){
+    return await this.courseService.getCoursebyId(id)
   }
 }

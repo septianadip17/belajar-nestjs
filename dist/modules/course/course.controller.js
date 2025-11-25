@@ -31,8 +31,10 @@ let CourseController = class CourseController {
         return await this.courseService.deleteCourse(id);
     }
     async updateCourse(id, payload) {
-        console.log(payload);
         return await this.courseService.updateCourse(id, payload);
+    }
+    async getCourseById(id) {
+        return await this.courseService.getCoursebyId(id);
     }
 };
 exports.CourseController = CourseController;
@@ -64,6 +66,13 @@ __decorate([
     __metadata("design:paramtypes", [String, course_model_2.UpdateCourseDto]),
     __metadata("design:returntype", Promise)
 ], CourseController.prototype, "updateCourse", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CourseController.prototype, "getCourseById", null);
 exports.CourseController = CourseController = __decorate([
     (0, common_1.Controller)('courses'),
     (0, common_1.Dependencies)(course_service_1.CourseService),
