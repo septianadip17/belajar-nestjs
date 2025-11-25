@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import {StudentController} from './student.controler.js';
+import {StudentController} from './student.controller.js';
 import {StudentService} from './student.service.js';
 import {StudentRepository} from './student.repository.js';
 
