@@ -9,13 +9,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentRepository = void 0;
 const database_1 = require("../../config/database");
 const common_1 = require("@nestjs/common");
+const date_fns_1 = require("date-fns");
 let StudentRepository = class StudentRepository {
     async findAllStudents() {
-        let query = 'SELECT StudentID, Name FROM Student';
+        let query = 'SELECT StudentID, Name, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate FROM Student';
         const [rows] = await database_1.dbPool.query(query);
         return rows.map((row) => ({
             id: row.StudentID,
             student_name: row.Name,
+            course_id: row.CourseID,
+            class_level: row.ClassLevel,
+            school_name: row.SchoolName,
+            email: row.Email,
+            phone_number: row.PhoneNumber,
+            birth_date: (0, date_fns_1.format)(row.BirthDate, 'dd-MM-yyyy')
         }));
     }
 };
