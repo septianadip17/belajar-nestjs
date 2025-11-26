@@ -1,8 +1,10 @@
 import { StudentRepository } from "./student.repository";
 import { AddStudentDto, EditStudentDto } from "./student.model";
+import { CourseRepository } from "../course/course.repository";
 export declare class StudentService {
     private studentRepository;
-    constructor(studentRepository: StudentRepository);
+    private courseRepository;
+    constructor(studentRepository: StudentRepository, courseRepository: CourseRepository);
     findAllStudents(): Promise<{
         id: number;
         student_name: string;
@@ -13,7 +15,7 @@ export declare class StudentService {
         phone_number: string;
         birth_date: string;
     }[]>;
-    addStudent(payload: AddStudentDto): Promise<void>;
+    addStudent(payload: AddStudentDto): Promise<string>;
     deleteStudent(id: string): Promise<void>;
     editStudent(id: string, payload: EditStudentDto): Promise<void>;
 }

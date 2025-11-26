@@ -1,4 +1,4 @@
-import { Injectable, Dependencies } from "@nestjs/common";
+import { Injectable, Dependencies, BadRequestException } from "@nestjs/common";
 import { StudentRepository } from "./student.repository";
 import { AddStudentDto, EditStudentDto } from "./student.model";
 import { CourseRepository } from "../course/course.repository";
@@ -6,23 +6,26 @@ import { CourseRepository } from "../course/course.repository";
 @Injectable()
 @Dependencies(StudentRepository, CourseRepository)
 export class StudentService {
-  constructor(private studentRepository: StudentRepository) {}
+  constructor(private studentRepository: StudentRepository, private courseRepository: CourseRepository) { }
 
   async findAllStudents() {
     return this.studentRepository.findAllStudents();
   }
 
-  async addStudent(payload: AddStudentDto){
-    
+  async addStudent(payload: AddStudentDto) {
+    const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString())
+    console.log(courseIdCheck)
+    if (courseIdCheck.length == 0) {
+      throw new BadRequestException('Course ID does not exist.');
+    }
     return this.studentRepository.addStudent(payload);
-    
   }
 
-  async deleteStudent(id: string){
+  async deleteStudent(id: string) {
     return this.studentRepository.deleteStudent(id)
   }
 
-  async editStudent(id: string, payload: EditStudentDto){
+  async editStudent(id: string, payload: EditStudentDto) {
     return this.studentRepository.editStudent(id, payload)
   }
 }

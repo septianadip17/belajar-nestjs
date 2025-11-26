@@ -24,6 +24,7 @@ let StudentController = class StudentController {
         return await this.studentService.findAllStudents();
     }
     async addStudent(payload) {
+        console.log(payload.courseId);
         return await this.studentService.addStudent(payload);
     }
     async deleteStudent(id) {

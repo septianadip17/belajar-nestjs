@@ -14,6 +14,7 @@ export class StudentController {
 
   @Post()
   async addStudent(@Body() payload: AddStudentDto) {
+    console.log(payload.courseId)
     return await this.studentService.addStudent(payload);
   }
 

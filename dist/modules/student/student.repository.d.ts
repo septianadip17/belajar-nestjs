@@ -10,7 +10,7 @@ export declare class StudentRepository {
         phone_number: string;
         birth_date: string;
     }[]>;
-    addStudent(payload: AddStudentDto): Promise<void>;
+    addStudent(payload: AddStudentDto): Promise<string>;
     deleteStudent(id: string): Promise<void>;
     editStudent(id: string, payload: EditStudentDto): Promise<void>;
 }

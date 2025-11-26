@@ -28,8 +28,7 @@ let StudentRepository = class StudentRepository {
     async addStudent(payload) {
         const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
         const [result] = await database_1.dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate]);
-        const courseChecking = await database_1.dbPool.execute(query, payload.courseId);
-        console.log(courseChecking);
+        return "berhasil nambah student";
     }
     async deleteStudent(id) {
         const query = 'DELETE FROM Student WHERE StudentID = ?';

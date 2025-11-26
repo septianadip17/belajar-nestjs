@@ -27,8 +27,8 @@ export class StudentRepository {
   async addStudent(payload: AddStudentDto) {
     const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
     const [result] = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate])
-    const courseChecking = await dbPool.execute(query,payload.courseId)
-    console.log(courseChecking)
+
+    return "berhasil nambah student"
   }
 
   // delete a student

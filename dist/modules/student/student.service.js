@@ -14,13 +14,19 @@ const common_1 = require("@nestjs/common");
 const student_repository_1 = require("./student.repository");
 const course_repository_1 = require("../course/course.repository");
 let StudentService = class StudentService {
-    constructor(studentRepository) {
+    constructor(studentRepository, courseRepository) {
         this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
     }
     async findAllStudents() {
         return this.studentRepository.findAllStudents();
     }
     async addStudent(payload) {
+        const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString());
+        console.log(courseIdCheck);
+        if (courseIdCheck.length == 0) {
+            throw new common_1.BadRequestException('Course ID does not exist.');
+        }
         return this.studentRepository.addStudent(payload);
     }
     async deleteStudent(id) {
@@ -34,6 +40,6 @@ exports.StudentService = StudentService;
 exports.StudentService = StudentService = __decorate([
     (0, common_1.Injectable)(),
     (0, common_1.Dependencies)(student_repository_1.StudentRepository, course_repository_1.CourseRepository),
-    __metadata("design:paramtypes", [student_repository_1.StudentRepository])
+    __metadata("design:paramtypes", [student_repository_1.StudentRepository, course_repository_1.CourseRepository])
 ], StudentService);
 //# sourceMappingURL=student.service.js.map
