@@ -26,7 +26,8 @@ export class StudentRepository {
     const [result] = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate])
   }
 
-  async deleteStudent(){
-    
+  async deleteStudent(id: string){
+    const query = 'DELETE FROM Student WHERE StudentID = ?';
+    const result = await dbPool.execute(query, [id])
   }
 }

@@ -15,7 +15,7 @@ export class StudentService {
     return this.studentRepository.addStudent(payload);
   }
 
-  async deleteStudent(){
-    return this.studentRepository.deleteStudent()
+  async deleteStudent(id: string){
+    return this.studentRepository.deleteStudent(id)
   }
 }

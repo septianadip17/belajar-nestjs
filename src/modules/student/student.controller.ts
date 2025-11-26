@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Dependencies, Body, Delete} from '@nestjs/common';
+import {Controller, Get, Post, Dependencies, Body, Delete, Param} from '@nestjs/common';
 import {StudentService} from './student.service';
 import { AddStudentDto } from './student.model';
 
@@ -17,8 +17,10 @@ export class StudentController {
     return await this.studentService.addStudent(payload);
   }
 
-  @Delete()
-  async deleteStudent(){
-    return await this.studentService.deleteStudent()
+  @Delete(':id')
+  async deleteStudent(@Param('id') id: string){
+    return await this.studentService.deleteStudent(id)
   }
+
+  
 }

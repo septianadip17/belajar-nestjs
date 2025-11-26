@@ -22,8 +22,8 @@ let StudentService = class StudentService {
     async addStudent(payload) {
         return this.studentRepository.addStudent(payload);
     }
-    async deleteStudent() {
-        return this.studentRepository.deleteStudent();
+    async deleteStudent(id) {
+        return this.studentRepository.deleteStudent(id);
     }
 };
 exports.StudentService = StudentService;

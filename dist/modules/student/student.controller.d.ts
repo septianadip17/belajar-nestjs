@@ -14,5 +14,5 @@ export declare class StudentController {
         birth_date: string;
     }[]>;
     addStudent(payload: AddStudentDto): Promise<void>;
-    deleteStudent(): Promise<void>;
+    deleteStudent(id: string): Promise<void>;
 }
