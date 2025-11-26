@@ -8,16 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentController = void 0;
 const common_1 = require("@nestjs/common");
 const student_service_1 = require("./student.service");
+const student_model_1 = require("./student.model");
 let StudentController = class StudentController {
     constructor(studentService) {
         this.studentService = studentService;
     }
     async findAllStudents() {
         return await this.studentService.findAllStudents();
+    }
+    async addStudent(payload) {
+        return await this.studentService.addStudent(payload);
+    }
+    async deleteStudent() {
+        return await this.studentService.deleteStudent();
     }
 };
 exports.StudentController = StudentController;
@@ -27,6 +37,19 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "findAllStudents", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [student_model_1.AddStudentDto]),
+    __metadata("design:returntype", Promise)
+], StudentController.prototype, "addStudent", null);
+__decorate([
+    (0, common_1.Delete)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], StudentController.prototype, "deleteStudent", null);
 exports.StudentController = StudentController = __decorate([
     (0, common_1.Controller)('students'),
     (0, common_1.Dependencies)(student_service_1.StudentService),

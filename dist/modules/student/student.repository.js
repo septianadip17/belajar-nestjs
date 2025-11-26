@@ -12,7 +12,7 @@ const common_1 = require("@nestjs/common");
 const date_fns_1 = require("date-fns");
 let StudentRepository = class StudentRepository {
     async findAllStudents() {
-        let query = 'SELECT StudentID, Name, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate FROM Student';
+        let query = 'SELECT StudentID, Name, CourseID ClassLevel, SchoolName, Email, PhoneNumber, BirthDate FROM Student';
         const [rows] = await database_1.dbPool.query(query);
         return rows.map((row) => ({
             id: row.StudentID,
@@ -24,6 +24,12 @@ let StudentRepository = class StudentRepository {
             phone_number: row.PhoneNumber,
             birth_date: (0, date_fns_1.format)(row.BirthDate, 'dd-MM-yyyy')
         }));
+    }
+    async addStudent(payload) {
+        const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const [result] = await database_1.dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate]);
+    }
+    async deleteStudent() {
     }
 };
 exports.StudentRepository = StudentRepository;

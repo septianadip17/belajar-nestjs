@@ -2,11 +2,12 @@ import { dbPool } from '../../config/database';
 import { Injectable } from '@nestjs/common';
 import { Student, StudentRow } from './student.interface'
 import {format} from 'date-fns'
+import { AddStudentDto } from './student.model';
 
 @Injectable()
 export class StudentRepository {
   async findAllStudents() {
-    let query = 'SELECT StudentID, Name, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate FROM Student';
+    let query = 'SELECT StudentID, Name, CourseID ClassLevel, SchoolName, Email, PhoneNumber, BirthDate FROM Student';
     const [rows] = await dbPool.query(query) as [StudentRow[], any];
     return rows.map((row: StudentRow) => ({
       id: row.StudentID,
@@ -18,5 +19,14 @@ export class StudentRepository {
       phone_number: row.PhoneNumber,
       birth_date: format(row.BirthDate, 'dd-MM-yyyy')
     }));
+  }
+
+  async addStudent(payload: AddStudentDto){
+    const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    const [result] = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate])
+  }
+
+  async deleteStudent(){
+    
   }
 }

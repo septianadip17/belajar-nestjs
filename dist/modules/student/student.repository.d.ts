@@ -1,3 +1,4 @@
+import { AddStudentDto } from './student.model';
 export declare class StudentRepository {
     findAllStudents(): Promise<{
         id: number;
@@ -9,4 +10,6 @@ export declare class StudentRepository {
         phone_number: string;
         birth_date: string;
     }[]>;
+    addStudent(payload: AddStudentDto): Promise<void>;
+    deleteStudent(): Promise<void>;
 }

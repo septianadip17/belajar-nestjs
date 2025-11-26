@@ -1,4 +1,5 @@
 import { StudentService } from './student.service';
+import { AddStudentDto } from './student.model';
 export declare class StudentController {
     private studentService;
     constructor(studentService: StudentService);
@@ -12,4 +13,6 @@ export declare class StudentController {
         phone_number: string;
         birth_date: string;
     }[]>;
+    addStudent(payload: AddStudentDto): Promise<void>;
+    deleteStudent(): Promise<void>;
 }

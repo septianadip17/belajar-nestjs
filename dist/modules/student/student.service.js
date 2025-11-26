@@ -19,6 +19,12 @@ let StudentService = class StudentService {
     async findAllStudents() {
         return this.studentRepository.findAllStudents();
     }
+    async addStudent(payload) {
+        return this.studentRepository.addStudent(payload);
+    }
+    async deleteStudent() {
+        return this.studentRepository.deleteStudent();
+    }
 };
 exports.StudentService = StudentService;
 exports.StudentService = StudentService = __decorate([

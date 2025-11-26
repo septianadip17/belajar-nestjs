@@ -1,4 +1,5 @@
 import { StudentRepository } from "./student.repository";
+import { AddStudentDto } from "./student.model";
 export declare class StudentService {
     private studentRepository;
     constructor(studentRepository: StudentRepository);
@@ -12,4 +13,6 @@ export declare class StudentService {
         phone_number: string;
         birth_date: string;
     }[]>;
+    addStudent(payload: AddStudentDto): Promise<void>;
+    deleteStudent(): Promise<void>;
 }
