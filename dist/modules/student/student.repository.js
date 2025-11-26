@@ -33,6 +33,14 @@ let StudentRepository = class StudentRepository {
     async deleteStudent(id) {
         const query = 'DELETE FROM Student WHERE StudentID = ?';
         const result = await database_1.dbPool.execute(query, [id]);
+        return "berhasil ngapus";
+    }
+    async getStudentById(id) {
+        const query = 'SELECT StudentID From Student WHERE StudentID = ?';
+        const [rows] = await database_1.dbPool.query(query, [id]);
+        return rows.map((row) => ({
+            id: row.StudentID
+        }));
     }
     async editStudent(id, payload) {
         const query = 'UPDATE Student SET Name = ?, CourseID = ?, ClassLevel = ?, SchoolName = ?, Email = ?, PhoneNumber = ?, BirthDate = ? WHERE StudentID = ?';

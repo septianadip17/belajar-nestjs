@@ -22,6 +22,11 @@ export class StudentService {
   }
 
   async deleteStudent(id: string) {
+    const studentIdCheck = await this.studentRepository.getStudentById(id)
+    console.log(studentIdCheck.length)
+    if (studentIdCheck.length == 0){
+      throw new BadRequestException('studentnya ga ada')
+    }
     return this.studentRepository.deleteStudent(id)
   }
 

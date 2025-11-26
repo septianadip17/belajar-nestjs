@@ -1,6 +1,6 @@
 import { dbPool } from '../../config/database';
 import { Injectable } from '@nestjs/common';
-import { Student, StudentRow } from './student.interface'
+import { StudentRow } from './student.interface'
 import { format } from 'date-fns'
 import { AddStudentDto, EditStudentDto } from './student.model';
 
@@ -34,7 +34,17 @@ export class StudentRepository {
   // delete a student
   async deleteStudent(id: string) {
     const query = 'DELETE FROM Student WHERE StudentID = ?';
-    const result = await dbPool.execute(query, [id])
+    const  result = await dbPool.execute(query, [id])
+    return "berhasil ngapus"
+  }
+
+  // get student by id
+  async getStudentById(id: string) {
+    const query = 'SELECT StudentID From Student WHERE StudentID = ?';
+    const [rows] = await dbPool.query(query, [id]) as [StudentRow[], any]
+    return rows.map((row: StudentRow) => ({
+      id: row.StudentID
+    }))
   }
 
   // edit a student

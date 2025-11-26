@@ -28,6 +28,7 @@ let StudentController = class StudentController {
         return await this.studentService.addStudent(payload);
     }
     async deleteStudent(id) {
+        console.log(id);
         return await this.studentService.deleteStudent(id);
     }
     async editStudent(id, payload) {

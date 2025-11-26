@@ -11,6 +11,9 @@ export declare class StudentRepository {
         birth_date: string;
     }[]>;
     addStudent(payload: AddStudentDto): Promise<string>;
-    deleteStudent(id: string): Promise<void>;
+    deleteStudent(id: string): Promise<string>;
+    getStudentById(id: string): Promise<{
+        id: number;
+    }[]>;
     editStudent(id: string, payload: EditStudentDto): Promise<void>;
 }

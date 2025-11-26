@@ -30,6 +30,11 @@ let StudentService = class StudentService {
         return this.studentRepository.addStudent(payload);
     }
     async deleteStudent(id) {
+        const studentIdCheck = await this.studentRepository.getStudentById(id);
+        console.log(studentIdCheck.length);
+        if (studentIdCheck.length == 0) {
+            throw new common_1.BadRequestException('studentnya ga ada');
+        }
         return this.studentRepository.deleteStudent(id);
     }
     async editStudent(id, payload) {

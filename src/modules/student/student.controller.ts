@@ -20,6 +20,7 @@ export class StudentController {
 
   @Delete(':id')
   async deleteStudent(@Param('id') id: string) {
+    console.log(id)
     return await this.studentService.deleteStudent(id)
   }
 
