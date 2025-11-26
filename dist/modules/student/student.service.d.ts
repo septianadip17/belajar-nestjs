@@ -1,5 +1,5 @@
 import { StudentRepository } from "./student.repository";
-import { AddStudentDto } from "./student.model";
+import { AddStudentDto, EditStudentDto } from "./student.model";
 export declare class StudentService {
     private studentRepository;
     constructor(studentRepository: StudentRepository);
@@ -15,4 +15,5 @@ export declare class StudentService {
     }[]>;
     addStudent(payload: AddStudentDto): Promise<void>;
     deleteStudent(id: string): Promise<void>;
+    editStudent(id: string, payload: EditStudentDto): Promise<void>;
 }

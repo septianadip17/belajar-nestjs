@@ -1,4 +1,4 @@
-import { AddStudentDto } from './student.model';
+import { AddStudentDto, EditStudentDto } from './student.model';
 export declare class StudentRepository {
     findAllStudents(): Promise<{
         id: number;
@@ -12,4 +12,5 @@ export declare class StudentRepository {
     }[]>;
     addStudent(payload: AddStudentDto): Promise<void>;
     deleteStudent(id: string): Promise<void>;
+    editStudent(id: string, payload: EditStudentDto): Promise<void>;
 }

@@ -1,8 +1,9 @@
+import { IsPhoneNumber } from 'class-validator';
 import { dbPool } from '../../config/database';
 import { Injectable } from '@nestjs/common';
 import { Student, StudentRow } from './student.interface'
-import {format} from 'date-fns'
-import { AddStudentDto } from './student.model';
+import { format } from 'date-fns'
+import { AddStudentDto, EditStudentDto } from './student.model';
 
 @Injectable()
 export class StudentRepository {
@@ -21,13 +22,18 @@ export class StudentRepository {
     }));
   }
 
-  async addStudent(payload: AddStudentDto){
+  async addStudent(payload: AddStudentDto) {
     const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
     const [result] = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate])
   }
 
-  async deleteStudent(id: string){
+  async deleteStudent(id: string) {
     const query = 'DELETE FROM Student WHERE StudentID = ?';
     const result = await dbPool.execute(query, [id])
+  }
+
+  async editStudent(id: string, payload: EditStudentDto) {
+    const query = 'UPDATE Student SET Name = ?, CourseID = ?, ClassLevel = ?, SchoolName = ?, Email = ?, PhoneNumber = ?, BirthDate = ? WHERE StudentID = ?';
+    const result = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate, id])
   }
 }

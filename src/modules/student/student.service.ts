@@ -1,6 +1,6 @@
 import { Injectable, Dependencies } from "@nestjs/common";
 import { StudentRepository } from "./student.repository";
-import { AddStudentDto } from "./student.model";
+import { AddStudentDto, EditStudentDto } from "./student.model";
 
 @Injectable()
 @Dependencies(StudentRepository)
@@ -17,5 +17,9 @@ export class StudentService {
 
   async deleteStudent(id: string){
     return this.studentRepository.deleteStudent(id)
+  }
+
+  async editStudent(id: string, payload: EditStudentDto){
+    return this.studentRepository.editStudent(id, payload)
   }
 }

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddStudentDto = void 0;
+exports.EditStudentDto = exports.AddStudentDto = void 0;
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
 class AddStudentDto {
@@ -59,4 +59,51 @@ __decorate([
     (0, class_transformer_1.Expose)({ name: 'birth_date' }),
     __metadata("design:type", String)
 ], AddStudentDto.prototype, "birthDate", void 0);
+class EditStudentDto {
+    constructor(studentName, courseId, classLevel, schoolName, email, phoneNumber, birthDate) {
+        this.studentName = studentName;
+        this.courseId = courseId;
+        this.classLevel = classLevel;
+        this.schoolName = schoolName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+    }
+}
+exports.EditStudentDto = EditStudentDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'student_name' }),
+    __metadata("design:type", String)
+], EditStudentDto.prototype, "studentName", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, class_transformer_1.Expose)({ name: 'course_id' }),
+    __metadata("design:type", Number)
+], EditStudentDto.prototype, "courseId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'class_level' }),
+    __metadata("design:type", String)
+], EditStudentDto.prototype, "classLevel", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'school_name' }),
+    __metadata("design:type", String)
+], EditStudentDto.prototype, "schoolName", void 0);
+__decorate([
+    (0, class_validator_1.IsEmail)(),
+    (0, class_transformer_1.Expose)({ name: 'email' }),
+    __metadata("design:type", String)
+], EditStudentDto.prototype, "email", void 0);
+__decorate([
+    (0, class_validator_1.IsPhoneNumber)(),
+    (0, class_transformer_1.Expose)({ name: 'phone_number' }),
+    __metadata("design:type", String)
+], EditStudentDto.prototype, "phoneNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'birth_date' }),
+    __metadata("design:type", String)
+], EditStudentDto.prototype, "birthDate", void 0);
 //# sourceMappingURL=student.model.js.map

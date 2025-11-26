@@ -29,6 +29,9 @@ let StudentController = class StudentController {
     async deleteStudent(id) {
         return await this.studentService.deleteStudent(id);
     }
+    async editStudent(id, payload) {
+        return await this.studentService.editStudent(id, payload);
+    }
 };
 exports.StudentController = StudentController;
 __decorate([
@@ -51,6 +54,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], StudentController.prototype, "deleteStudent", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, student_model_1.EditStudentDto]),
+    __metadata("design:returntype", Promise)
+], StudentController.prototype, "editStudent", null);
 exports.StudentController = StudentController = __decorate([
     (0, common_1.Controller)('students'),
     (0, common_1.Dependencies)(student_service_1.StudentService),
