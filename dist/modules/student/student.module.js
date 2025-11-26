@@ -11,13 +11,14 @@ const common_1 = require("@nestjs/common");
 const student_controller_1 = require("./student.controller");
 const student_service_1 = require("./student.service");
 const student_repository_1 = require("./student.repository");
+const course_repository_1 = require("../course/course.repository");
 let StudentModule = class StudentModule {
 };
 exports.StudentModule = StudentModule;
 exports.StudentModule = StudentModule = __decorate([
     (0, common_1.Module)({
         controllers: [student_controller_1.StudentController],
-        providers: [student_service_1.StudentService, student_repository_1.StudentRepository],
+        providers: [student_service_1.StudentService, student_repository_1.StudentRepository, course_repository_1.CourseRepository],
     })
 ], StudentModule);
 //# sourceMappingURL=student.module.js.map
