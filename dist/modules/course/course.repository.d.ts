@@ -7,7 +7,7 @@ export declare class CourseRepository {
         name: string;
         level: string;
         duration_in_weeks: number;
-    }>;
+    }[]>;
     createCourse(payload: CreateCourseDto): Promise<void>;
     deleteCourse(id: string): Promise<void>;
     updateCourse(id: string, payload: UpdateCourseDto): Promise<void>;

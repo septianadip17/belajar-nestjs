@@ -13,5 +13,5 @@ export declare class CourseController {
         name: string;
         level: string;
         duration_in_weeks: number;
-    }>;
+    }[]>;
 }

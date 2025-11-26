@@ -1,19 +1,10 @@
-import {dbPool} from '../../config/database';
+import { dbPool } from '../../config/database';
 import { Injectable } from '@nestjs/common';
-
-export interface Student {
-  id: number;
-  name: string;
-}
-
-interface StudentRow {
-  StudentID: number;
-  Name: string;
-}
+import { Student, StudentRow } from './student.interface'
 
 @Injectable()
 export class StudentRepository {
-  async findAllStudents(){
+  async findAllStudents() {
     let query = 'SELECT StudentID, Name FROM Student';
     const [rows] = await dbPool.query(query) as [StudentRow[], any];
     return rows.map((row: StudentRow) => ({
@@ -21,5 +12,4 @@ export class StudentRepository {
       student_name: row.Name,
     }));
   }
-
-  }
+}
