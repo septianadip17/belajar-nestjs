@@ -23,7 +23,7 @@ export class CourseService {
         return this.courseRepository.updateCourse(id, payload)
     }
 
-    async getCoursebyId(id: string){
+    async getCourseById(id: string){
         return this.courseRepository.getCourseById(id)
     }
 }

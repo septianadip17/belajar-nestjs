@@ -27,6 +27,8 @@ export class StudentRepository {
   async addStudent(payload: AddStudentDto) {
     const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
     const [result] = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate])
+    const courseChecking = await dbPool.execute(query,payload.courseId)
+    console.log(courseChecking)
   }
 
   // delete a student
@@ -39,5 +41,6 @@ export class StudentRepository {
   async editStudent(id: string, payload: EditStudentDto) {
     const query = 'UPDATE Student SET Name = ?, CourseID = ?, ClassLevel = ?, SchoolName = ?, Email = ?, PhoneNumber = ?, BirthDate = ? WHERE StudentID = ?';
     const result = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate, id])
+
   }
 }

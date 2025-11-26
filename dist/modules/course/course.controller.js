@@ -34,7 +34,7 @@ let CourseController = class CourseController {
         return await this.courseService.updateCourse(id, payload);
     }
     async getCourseById(id) {
-        return await this.courseService.getCoursebyId(id);
+        return await this.courseService.getCourseById(id);
     }
 };
 exports.CourseController = CourseController;

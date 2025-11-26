@@ -39,6 +39,6 @@ export class CourseController {
 
   @Get(':id')
   async getCourseById(@Param('id') id: string){
-    return await this.courseService.getCoursebyId(id)
+    return await this.courseService.getCourseById(id)
   }
 }

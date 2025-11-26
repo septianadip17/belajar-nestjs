@@ -13,7 +13,9 @@ export class StudentService {
   }
 
   async addStudent(payload: AddStudentDto){
+    
     return this.studentRepository.addStudent(payload);
+    
   }
 
   async deleteStudent(id: string){
