@@ -8,10 +8,12 @@ import { CourseRepository } from "../course/course.repository";
 export class StudentService {
   constructor(private studentRepository: StudentRepository, private courseRepository: CourseRepository) { }
 
+  // get all students
   async findAllStudents() {
     return this.studentRepository.findAllStudents();
   }
 
+  // add a student
   async addStudent(payload: AddStudentDto) {
     const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString())
     console.log(courseIdCheck)
@@ -21,6 +23,7 @@ export class StudentService {
     return this.studentRepository.addStudent(payload);
   }
 
+  // delete a student
   async deleteStudent(id: string) {
     const studentIdCheck = await this.studentRepository.getStudentById(id)
     console.log(studentIdCheck.length)
@@ -30,10 +33,12 @@ export class StudentService {
     return this.studentRepository.deleteStudent(id)
   }
 
+  // edi a student
   async editStudent(id: string, payload: EditStudentDto) {
     return this.studentRepository.editStudent(id, payload)
   }
 
+  // get a student
   async getStudentById(id: string){
     return this.studentRepository.getStudentById(id)
   }
