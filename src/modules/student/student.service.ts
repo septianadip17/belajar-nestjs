@@ -33,4 +33,8 @@ export class StudentService {
   async editStudent(id: string, payload: EditStudentDto) {
     return this.studentRepository.editStudent(id, payload)
   }
+
+  async getStudentById(id: string){
+    return this.studentRepository.getStudentById(id)
+  }
 }

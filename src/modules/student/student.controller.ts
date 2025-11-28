@@ -28,4 +28,9 @@ export class StudentController {
   async editStudent(@Param('id') id: string, @Body() payload: EditStudentDto) {
     return await this.studentService.editStudent(id, payload)
   }
+
+  @Get(':id')
+  async getStudentById(@Param('id') id: string){
+    return await this.studentService.getStudentById(id)
+  }
 }

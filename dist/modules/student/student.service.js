@@ -40,6 +40,9 @@ let StudentService = class StudentService {
     async editStudent(id, payload) {
         return this.studentRepository.editStudent(id, payload);
     }
+    async getStudentById(id) {
+        return this.studentRepository.getStudentById(id);
+    }
 };
 exports.StudentService = StudentService;
 exports.StudentService = StudentService = __decorate([

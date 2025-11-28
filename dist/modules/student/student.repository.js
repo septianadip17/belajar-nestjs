@@ -36,10 +36,17 @@ let StudentRepository = class StudentRepository {
         return "berhasil ngapus";
     }
     async getStudentById(id) {
-        const query = 'SELECT StudentID From Student WHERE StudentID = ?';
+        const query = 'SELECT StudentID, Name, CourseID ClassLevel, SchoolName, Email, PhoneNumber, BirthDate From Student WHERE StudentID = ?';
         const [rows] = await database_1.dbPool.query(query, [id]);
         return rows.map((row) => ({
-            id: row.StudentID
+            id: row.StudentID,
+            student_name: row.Name,
+            course_id: row.CourseID,
+            class_level: row.ClassLevel,
+            school_name: row.SchoolName,
+            email: row.Email,
+            phone_number: row.PhoneNumber,
+            birth_date: (0, date_fns_1.format)(row.BirthDate, 'dd-MM-yyyy')
         }));
     }
     async editStudent(id, payload) {

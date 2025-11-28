@@ -34,16 +34,23 @@ export class StudentRepository {
   // delete a student
   async deleteStudent(id: string) {
     const query = 'DELETE FROM Student WHERE StudentID = ?';
-    const  result = await dbPool.execute(query, [id])
+    const result = await dbPool.execute(query, [id])
     return "berhasil ngapus"
   }
 
   // get student by id
   async getStudentById(id: string) {
-    const query = 'SELECT StudentID From Student WHERE StudentID = ?';
+    const query = 'SELECT StudentID, Name, CourseID ClassLevel, SchoolName, Email, PhoneNumber, BirthDate From Student WHERE StudentID = ?';
     const [rows] = await dbPool.query(query, [id]) as [StudentRow[], any]
     return rows.map((row: StudentRow) => ({
-      id: row.StudentID
+      id: row.StudentID,
+      student_name: row.Name,
+      course_id: row.CourseID,
+      class_level: row.ClassLevel,
+      school_name: row.SchoolName,
+      email: row.Email,
+      phone_number: row.PhoneNumber,
+      birth_date: format(row.BirthDate, 'dd-MM-yyyy')
     }))
   }
 
