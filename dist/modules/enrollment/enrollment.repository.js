@@ -8,9 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnrollmentRepository = void 0;
 const common_1 = require("@nestjs/common");
+const database_1 = require("../../config/database");
+const date_fns_1 = require("date-fns");
 let EnrollmentRepository = class EnrollmentRepository {
     async findAllEnrollments() {
-        return "nah sip gaskeun";
+        const query = 'SELECT StudentID, CourseID, EnrollmentDate, Status FROM Enrollment';
+        const [rows] = await database_1.dbPool.query(query);
+        return rows.map((row) => ({
+            student_id: row.StudentID,
+            course_id: row.CourseID,
+            enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
+            status: row.Status
+        }));
     }
 };
 exports.EnrollmentRepository = EnrollmentRepository;
