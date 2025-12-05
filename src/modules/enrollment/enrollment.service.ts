@@ -1,12 +1,13 @@
 import { Dependencies, Injectable } from "@nestjs/common";
+import { EnrollmentRepository } from "./enrollment.repository";
 
 @Injectable()
-// @Dependencies(EnrollmentRepository)
+@Dependencies(EnrollmentRepository)
 export class EnrollmentService{
-  // constructor(private enrollmentRepository: EnrollmentRepository){}
+  constructor(private enrollmentRepository: EnrollmentRepository){}
 
   // get all enrollments
   async findAllEnrollments(){
-    return "pasingan dari service coy"
+    return await this.enrollmentRepository.findAllEnrollments()
   }
 }
