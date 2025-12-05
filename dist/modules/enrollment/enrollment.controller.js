@@ -25,6 +25,9 @@ let EnrollmentController = class EnrollmentController {
     async getEnrollmentById(id) {
         return await this.enrollmentService.getEnrollmentById(id);
     }
+    async createEnrollment() {
+        return this.enrollmentService.createEnrollment();
+    }
 };
 exports.EnrollmentController = EnrollmentController;
 __decorate([
@@ -40,6 +43,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], EnrollmentController.prototype, "getEnrollmentById", null);
+__decorate([
+    (0, common_1.Post)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], EnrollmentController.prototype, "createEnrollment", null);
 exports.EnrollmentController = EnrollmentController = __decorate([
     (0, common_1.Controller)('enrollments'),
     (0, common_1.Dependencies)(enrollment_service_1.EnrollmentService),

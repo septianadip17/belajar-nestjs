@@ -15,4 +15,9 @@ export class EnrollmentService{
   async getEnrollmentById(id: string){
     return await this.enrollmentRepository.getEnrollmentById(id)
   }
+
+  // create an enrollment
+  async createEnrollment(){
+    return "sabi lah"
+  }
 }

@@ -22,6 +22,9 @@ let EnrollmentService = class EnrollmentService {
     async getEnrollmentById(id) {
         return await this.enrollmentRepository.getEnrollmentById(id);
     }
+    async createEnrollment() {
+        return "sabi lah";
+    }
 };
 exports.EnrollmentService = EnrollmentService;
 exports.EnrollmentService = EnrollmentService = __decorate([

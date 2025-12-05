@@ -1,4 +1,4 @@
-import { Controller, Dependencies, Get, Param } from "@nestjs/common";
+import { Controller, Dependencies, Get, Param, Post } from "@nestjs/common";
 import { EnrollmentService } from "./enrollment.service";
 
 @Controller('enrollments')
@@ -16,5 +16,10 @@ export class EnrollmentController {
   @Get(':id')
   async getEnrollmentById(@Param('id') id: string){
     return await this.enrollmentService.getEnrollmentById(id)
+  }
+
+  @Post()
+  async createEnrollment(){
+    return this.enrollmentService.createEnrollment()
   }
 }

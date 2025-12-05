@@ -24,4 +24,5 @@ export declare class EnrollmentService {
         enrollment_date: string;
         status: string;
     }[]>;
+    createEnrollment(): Promise<string>;
 }
