@@ -12,8 +12,29 @@ const database_1 = require("../../config/database");
 const date_fns_1 = require("date-fns");
 let EnrollmentRepository = class EnrollmentRepository {
     async findAllEnrollments() {
-        const query = 'SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID JOIN Course  c ON e.CourseID  = c.CourseID';
+        const query = `SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID 
+    JOIN Course  c ON e.CourseID  = c.CourseID`;
         const [rows] = await database_1.dbPool.query(query);
+        return rows.map((row) => ({
+            enrollment_id: row.EnrollmentID,
+            student_id: row.StudentID,
+            course_id: row.CourseID,
+            name: row.Name,
+            school_name: row.SchoolName,
+            course_name: row.CourseName,
+            course_level: row.CourseLevel,
+            enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
+            status: row.Status
+        }));
+    }
+    async getEnrollmentById(id) {
+        const query = `SELECT 
+      s.StudentID, s.Name, s.SchoolName, c.CourseName, c.CourseLevel, e.EnrollmentDate, e.Status
+      FROM Enrollment e
+      JOIN Student s ON e.StudentID = s.StudentID 
+      JOIN Course c ON e.CourseID = c.CourseID 
+      WHERE e.EnrollmentID = ?`;
+        const [rows] = await database_1.dbPool.query(query, [id]);
         return rows.map((row) => ({
             enrollment_id: row.EnrollmentID,
             student_id: row.StudentID,

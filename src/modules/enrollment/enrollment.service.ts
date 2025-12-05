@@ -10,4 +10,9 @@ export class EnrollmentService{
   async findAllEnrollments(){
     return await this.enrollmentRepository.findAllEnrollments()
   }
+
+  // get an enrollment
+  async getEnrollmentById(id: string){
+    return await this.enrollmentRepository.getEnrollmentById(id)
+  }
 }

@@ -19,6 +19,9 @@ let EnrollmentService = class EnrollmentService {
     async findAllEnrollments() {
         return await this.enrollmentRepository.findAllEnrollments();
     }
+    async getEnrollmentById(id) {
+        return await this.enrollmentRepository.getEnrollmentById(id);
+    }
 };
 exports.EnrollmentService = EnrollmentService;
 exports.EnrollmentService = EnrollmentService = __decorate([
