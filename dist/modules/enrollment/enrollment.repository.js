@@ -47,6 +47,11 @@ let EnrollmentRepository = class EnrollmentRepository {
             status: row.Status
         }));
     }
+    async createEnrollment(payload) {
+        const query = `INSERT INTO Enrollment (StudentID, CourseID, EnrollmentDate, Status) values (?, ?, ?, ?);`;
+        const [result] = await database_1.dbPool.execute(query, [payload.studentId, payload.courseId, payload.enrollmentDate, payload.status]);
+        return (result);
+    }
 };
 exports.EnrollmentRepository = EnrollmentRepository;
 exports.EnrollmentRepository = EnrollmentRepository = __decorate([

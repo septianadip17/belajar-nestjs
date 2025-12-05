@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnrollmentController = void 0;
 const common_1 = require("@nestjs/common");
 const enrollment_service_1 = require("./enrollment.service");
+const enrollment_model_1 = require("./enrollment.model");
 let EnrollmentController = class EnrollmentController {
     constructor(enrollmentService) {
         this.enrollmentService = enrollmentService;
@@ -25,8 +26,8 @@ let EnrollmentController = class EnrollmentController {
     async getEnrollmentById(id) {
         return await this.enrollmentService.getEnrollmentById(id);
     }
-    async createEnrollment() {
-        return this.enrollmentService.createEnrollment();
+    async createEnrollment(payload) {
+        return this.enrollmentService.createEnrollment(payload);
     }
 };
 exports.EnrollmentController = EnrollmentController;
@@ -45,8 +46,9 @@ __decorate([
 ], EnrollmentController.prototype, "getEnrollmentById", null);
 __decorate([
     (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [enrollment_model_1.CreateEnrollmentDto]),
     __metadata("design:returntype", Promise)
 ], EnrollmentController.prototype, "createEnrollment", null);
 exports.EnrollmentController = EnrollmentController = __decorate([

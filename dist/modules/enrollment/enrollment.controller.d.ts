@@ -1,4 +1,5 @@
 import { EnrollmentService } from "./enrollment.service";
+import { CreateEnrollmentDto } from "./enrollment.model";
 export declare class EnrollmentController {
     private enrollmentService;
     constructor(enrollmentService: EnrollmentService);
@@ -24,5 +25,5 @@ export declare class EnrollmentController {
         enrollment_date: string;
         status: string;
     }[]>;
-    createEnrollment(): Promise<string>;
+    createEnrollment(payload: CreateEnrollmentDto): Promise<import("mysql2").QueryResult>;
 }

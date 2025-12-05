@@ -1,5 +1,7 @@
-import { Controller, Dependencies, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Dependencies, Get, Param, Post } from "@nestjs/common";
 import { EnrollmentService } from "./enrollment.service";
+import { CreateCourseDto } from "../course/course.model";
+import { CreateEnrollmentDto } from "./enrollment.model";
 
 @Controller('enrollments')
 @Dependencies(EnrollmentService)
@@ -19,7 +21,7 @@ export class EnrollmentController {
   }
 
   @Post()
-  async createEnrollment(){
-    return this.enrollmentService.createEnrollment()
+  async createEnrollment(@Body() payload: CreateEnrollmentDto){
+    return this.enrollmentService.createEnrollment(payload)
   }
 }

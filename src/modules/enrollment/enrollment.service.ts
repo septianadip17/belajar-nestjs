@@ -1,5 +1,6 @@
 import { Dependencies, Injectable } from "@nestjs/common";
 import { EnrollmentRepository } from "./enrollment.repository";
+import { CreateEnrollmentDto } from "./enrollment.model";
 
 @Injectable()
 @Dependencies(EnrollmentRepository)
@@ -17,7 +18,7 @@ export class EnrollmentService{
   }
 
   // create an enrollment
-  async createEnrollment(){
-    return "sabi lah"
+  async createEnrollment(payload: CreateEnrollmentDto){
+    return await this.enrollmentRepository.createEnrollment(payload)
   }
 }

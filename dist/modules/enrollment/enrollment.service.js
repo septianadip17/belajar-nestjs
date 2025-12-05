@@ -22,8 +22,8 @@ let EnrollmentService = class EnrollmentService {
     async getEnrollmentById(id) {
         return await this.enrollmentRepository.getEnrollmentById(id);
     }
-    async createEnrollment() {
-        return "sabi lah";
+    async createEnrollment(payload) {
+        return await this.enrollmentRepository.createEnrollment(payload);
     }
 };
 exports.EnrollmentService = EnrollmentService;

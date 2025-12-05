@@ -1,3 +1,4 @@
+import { CreateEnrollmentDto } from "./enrollment.model";
 export declare class EnrollmentRepository {
     findAllEnrollments(): Promise<{
         enrollment_id: number;
@@ -21,4 +22,5 @@ export declare class EnrollmentRepository {
         enrollment_date: string;
         status: string;
     }[]>;
+    createEnrollment(payload: CreateEnrollmentDto): Promise<import("mysql2").QueryResult>;
 }

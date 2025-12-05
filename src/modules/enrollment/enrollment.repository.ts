@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { dbPool } from "../../config/database";
 import { EnrollmentRow } from "./enrollment.interface";
 import { format } from 'date-fns'
+import { CreateEnrollmentDto } from "./enrollment.model";
 
 @Injectable()
 export class EnrollmentRepository {
@@ -46,5 +47,10 @@ export class EnrollmentRepository {
     }))
   }
 
-  // 
+  // create an enrollment
+  async createEnrollment(payload: CreateEnrollmentDto) {
+    const query = `INSERT INTO Enrollment (StudentID, CourseID, EnrollmentDate, Status) values (?, ?, ?, ?);`
+    const [result] = await dbPool.execute(query, [payload.studentId, payload.courseId, payload.enrollmentDate, payload.status])
+    return (result)
+  }
 }
