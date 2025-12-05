@@ -9,12 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnrollmentModule = void 0;
 const common_1 = require("@nestjs/common");
 const enrollment_controller_1 = require("./enrollment.controller");
+const enrollment_service_1 = require("./enrollment.service");
 let EnrollmentModule = class EnrollmentModule {
 };
 exports.EnrollmentModule = EnrollmentModule;
 exports.EnrollmentModule = EnrollmentModule = __decorate([
     (0, common_1.Module)({
         controllers: [enrollment_controller_1.EnrollmentController],
+        providers: [enrollment_service_1.EnrollmentService]
     })
 ], EnrollmentModule);
 //# sourceMappingURL=enrollment.module.js.map

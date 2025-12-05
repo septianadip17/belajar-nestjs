@@ -11,9 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnrollmentController = void 0;
 const common_1 = require("@nestjs/common");
+const enrollment_service_1 = require("./enrollment.service");
 let EnrollmentController = class EnrollmentController {
-    async findAllEnrollment() {
-        return "helo";
+    constructor(enrollmentService) {
+        this.enrollmentService = enrollmentService;
+    }
+    async findAllEnrollments() {
+        return await this.enrollmentService.findAllEnrollments();
     }
 };
 exports.EnrollmentController = EnrollmentController;
@@ -22,8 +26,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], EnrollmentController.prototype, "findAllEnrollment", null);
+], EnrollmentController.prototype, "findAllEnrollments", null);
 exports.EnrollmentController = EnrollmentController = __decorate([
-    (0, common_1.Controller)('enrollments')
+    (0, common_1.Controller)('enrollments'),
+    (0, common_1.Dependencies)(enrollment_service_1.EnrollmentService),
+    __metadata("design:paramtypes", [enrollment_service_1.EnrollmentService])
 ], EnrollmentController);
 //# sourceMappingURL=enrollment.controller.js.map

@@ -1,14 +1,15 @@
 import { Controller, Dependencies, Get } from "@nestjs/common";
+import { EnrollmentService } from "./enrollment.service";
 
 @Controller('enrollments')
-// @Dependencies(EnrollmentService)
+@Dependencies(EnrollmentService)
 export class EnrollmentController {
-  // construtor (private enrollmentService: EnrollmentService)
+  constructor (private enrollmentService: EnrollmentService){}
 
 
   @Get()
-  async findAllEnrollment() {
-    return "helo"
+  async findAllEnrollments() {
+    return await this.enrollmentService.findAllEnrollments()
   }
 
 }

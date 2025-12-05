@@ -1,3 +1,6 @@
+import { EnrollmentService } from "./enrollment.service";
 export declare class EnrollmentController {
-    findAllEnrollment(): Promise<string>;
+    private enrollmentService;
+    constructor(enrollmentService: EnrollmentService);
+    findAllEnrollments(): Promise<string>;
 }
