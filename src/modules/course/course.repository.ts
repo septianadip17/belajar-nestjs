@@ -1,6 +1,6 @@
 import { dbPool } from '../../config/database';
 import { Injectable } from '@nestjs/common';
-import { Course, CourseRow } from './course.interface';
+import { CourseRow } from './course.interface';
 import { CreateCourseDto, UpdateCourseDto } from './course.model';
 
 
@@ -8,7 +8,7 @@ import { CreateCourseDto, UpdateCourseDto } from './course.model';
 export class CourseRepository {
 
   // get all course
-  async findAllCourses(): Promise<Course[]> {
+  async findAllCourses() {
     const query = 'SELECT CourseID, CourseName, CourseLevel, DurationWeeks FROM Course';
     const [rows] = await dbPool.query(query) as [CourseRow[], any];
     return rows.map((row: CourseRow) => ({
