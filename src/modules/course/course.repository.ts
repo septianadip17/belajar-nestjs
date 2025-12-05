@@ -38,10 +38,18 @@ export class CourseRepository {
   }
 
   // delete course
-  async deleteCourse(id: string) {
-    const query = 'DELETE FROM Course WHERE CourseID = ?';
-    const [result] = await dbPool.execute(query, [id]);
-  }
+async deleteCourse(id: string) {
+  const [rows] = await dbPool.execute('SELECT * FROM Course WHERE CourseID = ?', [id]) as [CourseRow[], any];
+  const course = rows[0];
+  await dbPool.execute('DELETE FROM Course WHERE CourseID = ?', [id]);
+  return {
+    message: 'berhasil menghapus course',
+    id: course.CourseID,
+    name: course.CourseName,
+    level: course.CourseLevel,
+  };
+}
+
 
   // update course
   async updateCourse(id: string, payload: UpdateCourseDto) {

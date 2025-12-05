@@ -1,4 +1,4 @@
-import { Injectable, Dependencies } from "@nestjs/common";
+import { Injectable, Dependencies, BadRequestException } from "@nestjs/common";
 import { CourseRepository } from "./course.repository";
 import { CreateCourseDto, UpdateCourseDto } from "./course.model";
 
@@ -19,6 +19,10 @@ export class CourseService {
 
     // delete a course
     async deleteCourse(id: string){
+        const courseIdCheck = await this.courseRepository.getCourseById(id)
+        if (courseIdCheck.length == 0){
+            throw new BadRequestException('tidak ada course')
+        }
         return this.courseRepository.deleteCourse(id)
     }
 

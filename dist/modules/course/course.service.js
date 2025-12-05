@@ -23,6 +23,10 @@ let CourseService = class CourseService {
         return this.courseRepository.createCourse(payload);
     }
     async deleteCourse(id) {
+        const courseIdCheck = await this.courseRepository.getCourseById(id);
+        if (courseIdCheck.length == 0) {
+            throw new common_1.BadRequestException('tidak ada course');
+        }
         return this.courseRepository.deleteCourse(id);
     }
     async updateCourse(id, payload) {
