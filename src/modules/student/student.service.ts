@@ -12,6 +12,11 @@ export class StudentService {
   async findAllStudents() {
     return this.studentRepository.findAllStudents();
   }
+  
+  // get a student
+  async getStudentById(id: string){
+    return this.studentRepository.getStudentById(id)
+  }
 
   // add a student
   async addStudent(payload: AddStudentDto) {
@@ -22,7 +27,12 @@ export class StudentService {
     }
     return this.studentRepository.addStudent(payload);
   }
-
+  
+  // edit a student
+  async editStudent(id: string, payload: EditStudentDto) {
+    return this.studentRepository.editStudent(id, payload)
+  }
+  
   // delete a student
   async deleteStudent(id: string) {
     const studentIdCheck = await this.studentRepository.getStudentById(id)
@@ -31,15 +41,5 @@ export class StudentService {
       throw new BadRequestException('studentnya ga ada')
     }
     return this.studentRepository.deleteStudent(id)
-  }
-
-  // edit a student
-  async editStudent(id: string, payload: EditStudentDto) {
-    return this.studentRepository.editStudent(id, payload)
-  }
-
-  // get a student
-  async getStudentById(id: string){
-    return this.studentRepository.getStudentById(id)
   }
 }

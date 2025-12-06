@@ -21,6 +21,9 @@ let StudentService = class StudentService {
     async findAllStudents() {
         return this.studentRepository.findAllStudents();
     }
+    async getStudentById(id) {
+        return this.studentRepository.getStudentById(id);
+    }
     async addStudent(payload) {
         const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString());
         console.log(courseIdCheck);
@@ -29,6 +32,9 @@ let StudentService = class StudentService {
         }
         return this.studentRepository.addStudent(payload);
     }
+    async editStudent(id, payload) {
+        return this.studentRepository.editStudent(id, payload);
+    }
     async deleteStudent(id) {
         const studentIdCheck = await this.studentRepository.getStudentById(id);
         console.log(studentIdCheck.length);
@@ -36,12 +42,6 @@ let StudentService = class StudentService {
             throw new common_1.BadRequestException('studentnya ga ada');
         }
         return this.studentRepository.deleteStudent(id);
-    }
-    async editStudent(id, payload) {
-        return this.studentRepository.editStudent(id, payload);
-    }
-    async getStudentById(id) {
-        return this.studentRepository.getStudentById(id);
     }
 };
 exports.StudentService = StudentService;

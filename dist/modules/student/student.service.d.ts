@@ -15,9 +15,6 @@ export declare class StudentService {
         phone_number: string;
         birth_date: string;
     }[]>;
-    addStudent(payload: AddStudentDto): Promise<string>;
-    deleteStudent(id: string): Promise<string>;
-    editStudent(id: string, payload: EditStudentDto): Promise<void>;
     getStudentById(id: string): Promise<{
         id: number;
         student_name: string;
@@ -28,4 +25,7 @@ export declare class StudentService {
         phone_number: string;
         birth_date: string;
     }[]>;
+    addStudent(payload: AddStudentDto): Promise<string>;
+    editStudent(id: string, payload: EditStudentDto): Promise<void>;
+    deleteStudent(id: string): Promise<string>;
 }

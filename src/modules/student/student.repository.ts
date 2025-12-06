@@ -23,21 +23,6 @@ export class StudentRepository {
     }));
   }
 
-  // add a student
-  async addStudent(payload: AddStudentDto) {
-    const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    const [result] = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate])
-
-    return "berhasil nambah student"
-  }
-
-  // delete a student
-  async deleteStudent(id: string) {
-    const query = 'DELETE FROM Student WHERE StudentID = ?';
-    const result = await dbPool.execute(query, [id])
-    return "berhasil ngapus"
-  }
-
   // get student by id
   async getStudentById(id: string) {
     const query = 'SELECT StudentID, Name, CourseID ClassLevel, SchoolName, Email, PhoneNumber, BirthDate From Student WHERE StudentID = ?';
@@ -54,10 +39,24 @@ export class StudentRepository {
     }))
   }
 
+  // add a student
+  async addStudent(payload: AddStudentDto) {
+    const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    const [result] = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate])
+    return "berhasil nambah student"
+  }
+
   // edit a student
   async editStudent(id: string, payload: EditStudentDto) {
     const query = 'UPDATE Student SET Name = ?, CourseID = ?, ClassLevel = ?, SchoolName = ?, Email = ?, PhoneNumber = ?, BirthDate = ? WHERE StudentID = ?';
     const result = await dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate, id])
-
   }
+
+  // delete a student
+  async deleteStudent(id: string) {
+    const query = 'DELETE FROM Student WHERE StudentID = ?';
+    const result = await dbPool.execute(query, [id])
+    return "berhasil ngapus"
+  }
+
 }

@@ -25,16 +25,6 @@ let StudentRepository = class StudentRepository {
             birth_date: (0, date_fns_1.format)(row.BirthDate, 'dd-MM-yyyy')
         }));
     }
-    async addStudent(payload) {
-        const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        const [result] = await database_1.dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate]);
-        return "berhasil nambah student";
-    }
-    async deleteStudent(id) {
-        const query = 'DELETE FROM Student WHERE StudentID = ?';
-        const result = await database_1.dbPool.execute(query, [id]);
-        return "berhasil ngapus";
-    }
     async getStudentById(id) {
         const query = 'SELECT StudentID, Name, CourseID ClassLevel, SchoolName, Email, PhoneNumber, BirthDate From Student WHERE StudentID = ?';
         const [rows] = await database_1.dbPool.query(query, [id]);
@@ -49,9 +39,19 @@ let StudentRepository = class StudentRepository {
             birth_date: (0, date_fns_1.format)(row.BirthDate, 'dd-MM-yyyy')
         }));
     }
+    async addStudent(payload) {
+        const query = 'INSERT INTO Student (Name, CourseID, ClassLevel, SchoolName, Email, PhoneNumber, BirthDate) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const [result] = await database_1.dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate]);
+        return "berhasil nambah student";
+    }
     async editStudent(id, payload) {
         const query = 'UPDATE Student SET Name = ?, CourseID = ?, ClassLevel = ?, SchoolName = ?, Email = ?, PhoneNumber = ?, BirthDate = ? WHERE StudentID = ?';
         const result = await database_1.dbPool.execute(query, [payload.studentName, payload.courseId, payload.classLevel, payload.schoolName, payload.email, payload.phoneNumber, payload.birthDate, id]);
+    }
+    async deleteStudent(id) {
+        const query = 'DELETE FROM Student WHERE StudentID = ?';
+        const result = await database_1.dbPool.execute(query, [id]);
+        return "berhasil ngapus";
     }
 };
 exports.StudentRepository = StudentRepository;
