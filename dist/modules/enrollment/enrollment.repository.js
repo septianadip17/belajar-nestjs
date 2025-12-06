@@ -57,6 +57,9 @@ let EnrollmentRepository = class EnrollmentRepository {
         const result = await database_1.dbPool.execute(query, [id]);
         return "sip, berhasil hapus";
     }
+    async editEnrollment() {
+        return "siap meluncur";
+    }
 };
 exports.EnrollmentRepository = EnrollmentRepository;
 exports.EnrollmentRepository = EnrollmentRepository = __decorate([

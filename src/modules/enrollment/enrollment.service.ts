@@ -29,6 +29,6 @@ export class EnrollmentService {
 
   // edit an enrollment
   async editEnrollment() {
-    return await "bisa aje"
+    return await this.enrollmentRepository.editEnrollment()
   }
 }

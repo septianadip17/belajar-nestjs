@@ -32,8 +32,8 @@ let EnrollmentController = class EnrollmentController {
     async deleteEnrollment(id) {
         return await this.enrollmentService.deleteEnrollment(id);
     }
-    async editEnrollment() {
-        return this.enrollmentService.editEnrollment();
+    async editEnrollment(id) {
+        return this.enrollmentService.editEnrollment(id);
     }
 };
 exports.EnrollmentController = EnrollmentController;
@@ -65,9 +65,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], EnrollmentController.prototype, "deleteEnrollment", null);
 __decorate([
-    (0, common_1.Put)(),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], EnrollmentController.prototype, "editEnrollment", null);
 exports.EnrollmentController = EnrollmentController = __decorate([

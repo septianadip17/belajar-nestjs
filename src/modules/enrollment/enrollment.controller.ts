@@ -32,9 +32,9 @@ export class EnrollmentController {
   }
 
   // edit an enrollment
-  @Put()
-  async editEnrollment(){
-    return this.enrollmentService.editEnrollment()
+  @Put(':id')
+  async editEnrollment(@Param('id') id: string){
+    return this.enrollmentService.editEnrollment(id)
   }
 
 }

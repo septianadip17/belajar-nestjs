@@ -29,7 +29,7 @@ let EnrollmentService = class EnrollmentService {
         return await this.enrollmentRepository.deleteEnrollment(id);
     }
     async editEnrollment() {
-        return await "bisa aje";
+        return await this.enrollmentRepository.editEnrollment();
     }
 };
 exports.EnrollmentService = EnrollmentService;

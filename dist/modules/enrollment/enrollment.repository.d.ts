@@ -24,4 +24,5 @@ export declare class EnrollmentRepository {
     }[]>;
     createEnrollment(payload: CreateEnrollmentDto): Promise<string>;
     deleteEnrollment(id: string): Promise<string>;
+    editEnrollment(): Promise<string>;
 }

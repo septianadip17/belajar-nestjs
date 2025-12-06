@@ -33,7 +33,7 @@ export class StudentService {
     return this.studentRepository.deleteStudent(id)
   }
 
-  // edi a student
+  // edit a student
   async editStudent(id: string, payload: EditStudentDto) {
     return this.studentRepository.editStudent(id, payload)
   }

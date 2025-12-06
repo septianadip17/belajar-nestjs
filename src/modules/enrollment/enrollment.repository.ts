@@ -61,5 +61,8 @@ export class EnrollmentRepository {
     return "sip, berhasil hapus"
   }
 
-  
+  // edit an enrollment
+  async editEnrollment(){
+    return "siap meluncur"
+  }
 }
