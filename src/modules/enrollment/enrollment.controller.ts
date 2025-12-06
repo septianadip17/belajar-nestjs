@@ -19,11 +19,13 @@ export class EnrollmentController {
     return await this.enrollmentService.getEnrollmentById(id)
   }
 
+  // add an enrollment
   @Post()
   async createEnrollment(@Body() payload: CreateEnrollmentDto){
     return await this.enrollmentService.createEnrollment(payload)
   }
 
+  // delete an enrollment
   @Delete(':id')
   async deleteEnrollment(@Param('id') id: string){
     return await this.enrollmentService.deleteEnrollment(id)
