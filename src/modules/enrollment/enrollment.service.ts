@@ -1,4 +1,4 @@
-import { Dependencies, Injectable } from "@nestjs/common";
+import { BadRequestException, Dependencies, Injectable } from "@nestjs/common";
 import { EnrollmentRepository } from "./enrollment.repository";
 import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 
@@ -24,6 +24,10 @@ export class EnrollmentService {
 
   // delete an enrollment
   async deleteEnrollment(id: string) {
+    const enrollmentIdCheck = await this.enrollmentRepository.getEnrollmentById(id)
+    if(enrollmentIdCheck.length == 0){
+      throw new BadRequestException('the enrollment does not exist')
+    }
     return await this.enrollmentRepository.deleteEnrollment(id)
   }
 

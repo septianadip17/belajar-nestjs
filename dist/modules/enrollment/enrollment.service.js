@@ -26,6 +26,10 @@ let EnrollmentService = class EnrollmentService {
         return await this.enrollmentRepository.createEnrollment(payload);
     }
     async deleteEnrollment(id) {
+        const enrollmentIdCheck = await this.enrollmentRepository.getEnrollmentById(id);
+        if (enrollmentIdCheck.length == 0) {
+            throw new common_1.BadRequestException('the enrollment does not exist');
+        }
         return await this.enrollmentRepository.deleteEnrollment(id);
     }
     async editEnrollment(id, payload) {
