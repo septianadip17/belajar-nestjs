@@ -35,8 +35,10 @@ let CourseRepository = class CourseRepository {
         const [result] = await database_1.dbPool.execute(query, [payload.name, payload.level, payload.durationInWeeks]);
     }
     async deleteCourse(id) {
-        const [rows] = await database_1.dbPool.execute('SELECT * FROM Course WHERE CourseID = ?', [id]);
+        const query = `SELECT * FROM Course WHERE CourseID = ?`;
+        const [rows] = await database_1.dbPool.execute(query, [id]);
         const course = rows[0];
+        console.log(course);
         await database_1.dbPool.execute('DELETE FROM Course WHERE CourseID = ?', [id]);
         return {
             message: 'berhasil menghapus course',

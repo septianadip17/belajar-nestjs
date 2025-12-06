@@ -22,7 +22,13 @@ export class CourseController {
   async findAllCourses() {
     return await this.courseService.findAllCourses();
   }
-
+  
+  // endpoint get a course
+  @Get(':id')
+  async getCourseById(@Param('id') id: string){
+    return await this.courseService.getCourseById(id)
+  }
+  
   // endpoint add a course
   @Post()
   async createCourse(@Body() payload: CreateCourseDto) {
@@ -41,9 +47,4 @@ export class CourseController {
     return await this.courseService.updateCourse(id, payload)
   }
 
-  // endpoint get a course
-  @Get(':id')
-  async getCourseById(@Param('id') id: string){
-    return await this.courseService.getCourseById(id)
-  }
 }

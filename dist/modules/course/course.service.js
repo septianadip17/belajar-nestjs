@@ -19,21 +19,21 @@ let CourseService = class CourseService {
     async findAllCourses() {
         return this.courseRepository.findAllCourses();
     }
+    async getCourseById(id) {
+        return this.courseRepository.getCourseById(id);
+    }
     async createCourse(payload) {
         return this.courseRepository.createCourse(payload);
     }
     async deleteCourse(id) {
-        const courseIdCheck = await this.courseRepository.getCourseById(id);
-        if (courseIdCheck.length == 0) {
+        const course = await this.courseRepository.getCourseById(id);
+        if (!course) {
             throw new common_1.BadRequestException('tidak ada course');
         }
         return this.courseRepository.deleteCourse(id);
     }
     async updateCourse(id, payload) {
         return this.courseRepository.updateCourse(id, payload);
-    }
-    async getCourseById(id) {
-        return this.courseRepository.getCourseById(id);
     }
 };
 exports.CourseService = CourseService;

@@ -39,8 +39,10 @@ export class CourseRepository {
 
   // delete course
   async deleteCourse(id: string) {
-    const [rows] = await dbPool.execute('SELECT * FROM Course WHERE CourseID = ?', [id]) as [CourseRow[], any];
+    const query = `SELECT * FROM Course WHERE CourseID = ?`
+    const [rows] = await dbPool.execute(query, [id]) as [CourseRow[], any];
     const course = rows[0];
+    console.log(course)
     await dbPool.execute('DELETE FROM Course WHERE CourseID = ?', [id]);
     return {
       message: 'berhasil menghapus course',

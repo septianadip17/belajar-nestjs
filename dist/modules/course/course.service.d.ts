@@ -9,6 +9,12 @@ export declare class CourseService {
         level: string;
         duration_in_weeks: number;
     }[]>;
+    getCourseById(id: string): Promise<{
+        id: number;
+        name: string;
+        level: string;
+        duration_in_weeks: number;
+    }[]>;
     createCourse(payload: CreateCourseDto): Promise<void>;
     deleteCourse(id: string): Promise<{
         message: string;
@@ -17,10 +23,4 @@ export declare class CourseService {
         level: string;
     }>;
     updateCourse(id: string, payload: UpdateCourseDto): Promise<void>;
-    getCourseById(id: string): Promise<{
-        id: number;
-        name: string;
-        level: string;
-        duration_in_weeks: number;
-    }[]>;
 }
