@@ -11,7 +11,7 @@ export declare class CourseRepository {
         name: string;
         level: string;
         duration_in_weeks: number;
-    }[]>;
+    } | null>;
     createCourse(payload: CreateCourseDto): Promise<void>;
     deleteCourse(id: string): Promise<{
         message: string;

@@ -39,7 +39,6 @@ export class EnrollmentRepository {
     if (rows.length === 0) {
       return null; // or throw an error if preferred
     }
-
     const row = rows[0];
     return {
       enrollment_id: row.EnrollmentID,
@@ -50,8 +49,7 @@ export class EnrollmentRepository {
       course_name: row.CourseName,
       course_level: row.CourseLevel,
       enrollment_date: format(row.EnrollmentDate, 'dd-MM-yyyy'),
-      status: row.Status,
-      message: "It's working"
+      status: row.Status
     };
   }
 

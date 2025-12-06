@@ -50,8 +50,7 @@ let EnrollmentRepository = class EnrollmentRepository {
             course_name: row.CourseName,
             course_level: row.CourseLevel,
             enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
-            status: row.Status,
-            message: "It's working"
+            status: row.Status
         };
     }
     async createEnrollment(payload) {

@@ -20,11 +20,11 @@ export class StudentService {
 
   // add a student
   async addStudent(payload: AddStudentDto) {
-    const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString())
-    console.log(courseIdCheck)
-    if (courseIdCheck.length == 0) {
-      throw new BadRequestException('Course ID does not exist.');
-    }
+    // const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString())
+    // console.log(courseIdCheck)
+    // if (courseIdCheck.length == 0) {
+    //   throw new BadRequestException('Course ID does not exist.');
+    // }
     return this.studentRepository.addStudent(payload);
   }
   

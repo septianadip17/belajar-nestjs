@@ -23,11 +23,11 @@ export class EnrollmentService {
   async createEnrollment(payload: CreateEnrollmentDto) {
     const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString())
     const studentIdCheck = await this.studentRepository.getStudentById(payload.studentId.toString())
-    if (courseIdCheck.length == 0 && studentIdCheck.length == 0) {
+    if (!courseIdCheck && studentIdCheck.length == 0) {
       throw new BadRequestException('Course ID and Student ID does not exist.');
     } else if (studentIdCheck.length == 0) {
       throw new BadRequestException('Student ID does not exist.');
-    } else if (courseIdCheck.length == 0) {
+    } else if (!courseIdCheck) {
       throw new BadRequestException('Course ID does not exist.');
     }
     return await this.enrollmentRepository.createEnrollment(payload)

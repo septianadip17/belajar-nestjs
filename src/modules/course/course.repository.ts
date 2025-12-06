@@ -23,12 +23,16 @@ export class CourseRepository {
   async getCourseById(id: string) {
     const query = 'SELECT CourseID, CourseName, CourseLevel, DurationWeeks FROM Course WHERE CourseID = ?';
     const [rows] = await dbPool.query(query, [id]) as [CourseRow[], any];
-    return rows.map((row: CourseRow) => ({
+    if (rows.length === 0) {
+      return null;
+    }
+    const row = rows[0]
+    return {
       id: row.CourseID,
       name: row.CourseName,
       level: row.CourseLevel,
       duration_in_weeks: row.DurationWeeks,
-    }));
+    }
   }
 
   // create course

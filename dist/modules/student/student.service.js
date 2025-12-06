@@ -25,11 +25,6 @@ let StudentService = class StudentService {
         return this.studentRepository.getStudentById(id);
     }
     async addStudent(payload) {
-        const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString());
-        console.log(courseIdCheck);
-        if (courseIdCheck.length == 0) {
-            throw new common_1.BadRequestException('Course ID does not exist.');
-        }
         return this.studentRepository.addStudent(payload);
     }
     async editStudent(id, payload) {

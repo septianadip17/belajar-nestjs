@@ -23,12 +23,16 @@ let CourseRepository = class CourseRepository {
     async getCourseById(id) {
         const query = 'SELECT CourseID, CourseName, CourseLevel, DurationWeeks FROM Course WHERE CourseID = ?';
         const [rows] = await database_1.dbPool.query(query, [id]);
-        return rows.map((row) => ({
+        if (rows.length === 0) {
+            return null;
+        }
+        const row = rows[0];
+        return {
             id: row.CourseID,
             name: row.CourseName,
             level: row.CourseLevel,
             duration_in_weeks: row.DurationWeeks,
-        }));
+        };
     }
     async createCourse(payload) {
         const query = 'INSERT INTO Course (CourseName, CourseLevel, DurationWeeks) VALUES (?, ?, ?)';
