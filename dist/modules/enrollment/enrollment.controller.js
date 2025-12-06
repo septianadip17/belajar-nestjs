@@ -27,7 +27,10 @@ let EnrollmentController = class EnrollmentController {
         return await this.enrollmentService.getEnrollmentById(id);
     }
     async createEnrollment(payload) {
-        return this.enrollmentService.createEnrollment(payload);
+        return await this.enrollmentService.createEnrollment(payload);
+    }
+    async deleteEnrollment(id) {
+        return await this.enrollmentService.deleteEnrollment(id);
     }
 };
 exports.EnrollmentController = EnrollmentController;
@@ -51,6 +54,13 @@ __decorate([
     __metadata("design:paramtypes", [enrollment_model_1.CreateEnrollmentDto]),
     __metadata("design:returntype", Promise)
 ], EnrollmentController.prototype, "createEnrollment", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], EnrollmentController.prototype, "deleteEnrollment", null);
 exports.EnrollmentController = EnrollmentController = __decorate([
     (0, common_1.Controller)('enrollments'),
     (0, common_1.Dependencies)(enrollment_service_1.EnrollmentService),

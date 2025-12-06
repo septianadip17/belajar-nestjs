@@ -1,4 +1,4 @@
-import { Body, Controller, Dependencies, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Dependencies, Get, Param, Post } from "@nestjs/common";
 import { EnrollmentService } from "./enrollment.service";
 import { CreateEnrollmentDto } from "./enrollment.model";
 
@@ -21,8 +21,12 @@ export class EnrollmentController {
 
   @Post()
   async createEnrollment(@Body() payload: CreateEnrollmentDto){
-    return this.enrollmentService.createEnrollment(payload)
+    return await this.enrollmentService.createEnrollment(payload)
   }
 
+  @Delete(':id')
+  async deleteEnrollment(@Param('id') id: string){
+    return await this.enrollmentService.deleteEnrollment(id)
+  }
 
 }

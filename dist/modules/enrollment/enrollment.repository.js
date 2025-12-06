@@ -52,6 +52,11 @@ let EnrollmentRepository = class EnrollmentRepository {
         const [result] = await database_1.dbPool.execute(query, [payload.studentId, payload.courseId, payload.enrollmentDate, payload.status]);
         return "berhasil menambahkan enrollment";
     }
+    async deleteEnrollment(id) {
+        const query = 'DELETE FROM Enrollment WHERE EnrollmentID = ?';
+        const result = await database_1.dbPool.execute(query, [id]);
+        return "sip, berhasil hapus";
+    }
 };
 exports.EnrollmentRepository = EnrollmentRepository;
 exports.EnrollmentRepository = EnrollmentRepository = __decorate([

@@ -26,4 +26,5 @@ export declare class EnrollmentService {
         status: string;
     }[]>;
     createEnrollment(payload: CreateEnrollmentDto): Promise<string>;
+    deleteEnrollment(id: string): Promise<string>;
 }
