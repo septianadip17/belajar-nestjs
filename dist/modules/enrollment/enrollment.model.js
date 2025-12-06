@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateEnrollmentDto = void 0;
+exports.EditEnrollmentDto = exports.CreateEnrollmentDto = void 0;
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
 class CreateEnrollmentDto {
@@ -41,4 +41,33 @@ __decorate([
     (0, class_transformer_1.Expose)({ name: 'status' }),
     __metadata("design:type", String)
 ], CreateEnrollmentDto.prototype, "status", void 0);
+class EditEnrollmentDto {
+    constructor(studentId, courseId, enrollmentDate, status) {
+        this.studentId = studentId;
+        this.courseId = courseId;
+        this.enrollmentDate = enrollmentDate;
+        this.status = status;
+    }
+}
+exports.EditEnrollmentDto = EditEnrollmentDto;
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, class_transformer_1.Expose)({ name: 'student_id' }),
+    __metadata("design:type", Number)
+], EditEnrollmentDto.prototype, "studentId", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, class_transformer_1.Expose)({ name: 'course_id' }),
+    __metadata("design:type", Number)
+], EditEnrollmentDto.prototype, "courseId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'enrollment_date' }),
+    __metadata("design:type", String)
+], EditEnrollmentDto.prototype, "enrollmentDate", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)({ name: 'status' }),
+    __metadata("design:type", String)
+], EditEnrollmentDto.prototype, "status", void 0);
 //# sourceMappingURL=enrollment.model.js.map

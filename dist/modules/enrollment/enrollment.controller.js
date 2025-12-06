@@ -32,8 +32,8 @@ let EnrollmentController = class EnrollmentController {
     async deleteEnrollment(id) {
         return await this.enrollmentService.deleteEnrollment(id);
     }
-    async editEnrollment(id) {
-        return this.enrollmentService.editEnrollment(id);
+    async editEnrollment(id, payload) {
+        return this.enrollmentService.editEnrollment(id, payload);
     }
 };
 exports.EnrollmentController = EnrollmentController;
@@ -67,8 +67,9 @@ __decorate([
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, enrollment_model_1.EditEnrollmentDto]),
     __metadata("design:returntype", Promise)
 ], EnrollmentController.prototype, "editEnrollment", null);
 exports.EnrollmentController = EnrollmentController = __decorate([

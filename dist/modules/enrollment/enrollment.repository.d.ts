@@ -1,4 +1,4 @@
-import { CreateEnrollmentDto } from "./enrollment.model";
+import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 export declare class EnrollmentRepository {
     findAllEnrollments(): Promise<{
         enrollment_id: number;
@@ -24,5 +24,5 @@ export declare class EnrollmentRepository {
     }[]>;
     createEnrollment(payload: CreateEnrollmentDto): Promise<string>;
     deleteEnrollment(id: string): Promise<string>;
-    editEnrollment(): Promise<string>;
+    editEnrollment(id: string, payload: EditEnrollmentDto): Promise<string>;
 }

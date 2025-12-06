@@ -28,8 +28,8 @@ let EnrollmentService = class EnrollmentService {
     async deleteEnrollment(id) {
         return await this.enrollmentRepository.deleteEnrollment(id);
     }
-    async editEnrollment() {
-        return await this.enrollmentRepository.editEnrollment();
+    async editEnrollment(id, payload) {
+        return await this.enrollmentRepository.editEnrollment(id, payload);
     }
 };
 exports.EnrollmentService = EnrollmentService;

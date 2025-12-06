@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Dependencies, Get, Param, Post, Put } from "@nestjs/common";
 import { EnrollmentService } from "./enrollment.service";
-import { CreateEnrollmentDto } from "./enrollment.model";
+import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 
 @Controller('enrollments')
 @Dependencies(EnrollmentService)
@@ -33,8 +33,8 @@ export class EnrollmentController {
 
   // edit an enrollment
   @Put(':id')
-  async editEnrollment(@Param('id') id: string){
-    return this.enrollmentService.editEnrollment(id)
+  async editEnrollment(@Param('id') id: string, @Body() payload: EditEnrollmentDto){
+    return this.enrollmentService.editEnrollment(id, payload)
   }
 
 }

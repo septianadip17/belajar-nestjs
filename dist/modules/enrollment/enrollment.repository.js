@@ -57,8 +57,10 @@ let EnrollmentRepository = class EnrollmentRepository {
         const result = await database_1.dbPool.execute(query, [id]);
         return "sip, berhasil hapus";
     }
-    async editEnrollment() {
-        return "siap meluncur";
+    async editEnrollment(id, payload) {
+        const query = 'UPDATE Enrollment SET StudentID = ?, CourseID = ?, EnrollmentDate = ?, Status = ? WHERE EnrollmentID = ?';
+        const result = await database_1.dbPool.execute(query, [payload.studentId, payload.courseId, payload.enrollmentDate, payload.status, id]);
+        return "siap meluncur rapih dah";
     }
 };
 exports.EnrollmentRepository = EnrollmentRepository;

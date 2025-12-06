@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { dbPool } from "../../config/database";
 import { EnrollmentRow } from "./enrollment.interface";
 import { format } from 'date-fns'
-import { CreateEnrollmentDto } from "./enrollment.model";
+import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 
 @Injectable()
 export class EnrollmentRepository {
@@ -62,7 +62,9 @@ export class EnrollmentRepository {
   }
 
   // edit an enrollment
-  async editEnrollment(){
-    return "siap meluncur"
+  async editEnrollment(id: string, payload: EditEnrollmentDto){
+    const query = 'UPDATE Enrollment SET StudentID = ?, CourseID = ?, EnrollmentDate = ?, Status = ? WHERE EnrollmentID = ?'
+    const result = await dbPool.execute(query, [payload.studentId, payload.courseId, payload.enrollmentDate ,payload.status, id])
+    return "siap meluncur rapih dah"
   }
 }

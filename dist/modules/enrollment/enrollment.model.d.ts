@@ -5,3 +5,10 @@ export declare class CreateEnrollmentDto {
     status: string;
     constructor(studentId: number, courseId: number, enrollmentDate: string, status: string);
 }
+export declare class EditEnrollmentDto {
+    studentId: number;
+    courseId: number;
+    enrollmentDate: string;
+    status: string;
+    constructor(studentId: number, courseId: number, enrollmentDate: string, status: string);
+}

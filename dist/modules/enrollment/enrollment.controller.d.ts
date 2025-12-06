@@ -1,5 +1,5 @@
 import { EnrollmentService } from "./enrollment.service";
-import { CreateEnrollmentDto } from "./enrollment.model";
+import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 export declare class EnrollmentController {
     private enrollmentService;
     constructor(enrollmentService: EnrollmentService);
@@ -27,5 +27,5 @@ export declare class EnrollmentController {
     }[]>;
     createEnrollment(payload: CreateEnrollmentDto): Promise<string>;
     deleteEnrollment(id: string): Promise<string>;
-    editEnrollment(id: string): Promise<string>;
+    editEnrollment(id: string, payload: EditEnrollmentDto): Promise<string>;
 }
