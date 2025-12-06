@@ -22,8 +22,11 @@ export class EnrollmentService{
     return await this.enrollmentRepository.createEnrollment(payload)
   }
 
-  // delete enrollment
+  // delete an enrollment
   async deleteEnrollment(id: string){
-    return await this.enrollmentRepository.deleteEnrollment(id)
+    return await 
+    this.enrollmentRepository.deleteEnrollment(id)
   }
+
+  // edit an enrollment
 }
