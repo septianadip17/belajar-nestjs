@@ -27,4 +27,5 @@ export declare class EnrollmentController {
     }[]>;
     createEnrollment(payload: CreateEnrollmentDto): Promise<string>;
     deleteEnrollment(id: string): Promise<string>;
+    editEnrollment(): Promise<string>;
 }

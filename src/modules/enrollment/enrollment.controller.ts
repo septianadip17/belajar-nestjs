@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Dependencies, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Dependencies, Get, Param, Post, Put } from "@nestjs/common";
 import { EnrollmentService } from "./enrollment.service";
 import { CreateEnrollmentDto } from "./enrollment.model";
 
@@ -29,6 +29,12 @@ export class EnrollmentController {
   @Delete(':id')
   async deleteEnrollment(@Param('id') id: string){
     return await this.enrollmentService.deleteEnrollment(id)
+  }
+
+  // edit an enrollment
+  @Put()
+  async editEnrollment(){
+    return "edit ok"
   }
 
 }

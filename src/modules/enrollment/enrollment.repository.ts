@@ -60,4 +60,6 @@ export class EnrollmentRepository {
     const result = await dbPool.execute(query, [id])
     return "sip, berhasil hapus"
   }
+
+  
 }
