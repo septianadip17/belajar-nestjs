@@ -33,7 +33,7 @@ let EnrollmentController = class EnrollmentController {
         return await this.enrollmentService.deleteEnrollment(id);
     }
     async editEnrollment() {
-        return "edit ok";
+        return this.enrollmentService.editEnrollment();
     }
 };
 exports.EnrollmentController = EnrollmentController;

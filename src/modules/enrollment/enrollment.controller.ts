@@ -34,7 +34,7 @@ export class EnrollmentController {
   // edit an enrollment
   @Put()
   async editEnrollment(){
-    return "edit ok"
+    return this.enrollmentService.editEnrollment()
   }
 
 }

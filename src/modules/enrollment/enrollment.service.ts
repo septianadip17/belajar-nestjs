@@ -4,29 +4,31 @@ import { CreateEnrollmentDto } from "./enrollment.model";
 
 @Injectable()
 @Dependencies(EnrollmentRepository)
-export class EnrollmentService{
-  constructor(private enrollmentRepository: EnrollmentRepository){}
+export class EnrollmentService {
+  constructor(private enrollmentRepository: EnrollmentRepository) { }
 
   // get all enrollments
-  async findAllEnrollments(){
+  async findAllEnrollments() {
     return await this.enrollmentRepository.findAllEnrollments()
   }
 
   // get an enrollment
-  async getEnrollmentById(id: string){
+  async getEnrollmentById(id: string) {
     return await this.enrollmentRepository.getEnrollmentById(id)
   }
 
   // create an enrollment
-  async createEnrollment(payload: CreateEnrollmentDto){
+  async createEnrollment(payload: CreateEnrollmentDto) {
     return await this.enrollmentRepository.createEnrollment(payload)
   }
 
   // delete an enrollment
-  async deleteEnrollment(id: string){
-    return await 
-    this.enrollmentRepository.deleteEnrollment(id)
+  async deleteEnrollment(id: string) {
+    return await this.enrollmentRepository.deleteEnrollment(id)
   }
 
   // edit an enrollment
+  async editEnrollment() {
+    return await "bisa aje"
+  }
 }

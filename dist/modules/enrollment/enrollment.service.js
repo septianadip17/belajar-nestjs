@@ -28,6 +28,9 @@ let EnrollmentService = class EnrollmentService {
     async deleteEnrollment(id) {
         return await this.enrollmentRepository.deleteEnrollment(id);
     }
+    async editEnrollment() {
+        return await "bisa aje";
+    }
 };
 exports.EnrollmentService = EnrollmentService;
 exports.EnrollmentService = EnrollmentService = __decorate([
