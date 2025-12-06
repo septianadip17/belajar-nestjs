@@ -27,7 +27,7 @@ export class EnrollmentService {
       throw new BadRequestException('Course ID and Student ID does not exist.');
     } else if (studentIdCheck.length == 0) {
       throw new BadRequestException('Student ID does not exist.');
-    } else if (courseIdCheck.length == 0 ) {
+    } else if (courseIdCheck.length == 0) {
       throw new BadRequestException('Course ID does not exist.');
     }
     return await this.enrollmentRepository.createEnrollment(payload)
