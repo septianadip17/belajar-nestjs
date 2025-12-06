@@ -9,15 +9,15 @@ export class EnrollmentRepository {
 
   // get all enrollments
   async findAllEnrollments() {
-    const query = `SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID 
+    const query = `SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, c.CourseID, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID 
     JOIN Course  c ON e.CourseID  = c.CourseID`
     const [rows] = await dbPool.query(query) as [EnrollmentRow[], any]
     return rows.map((row: EnrollmentRow) => ({
       enrollment_id: row.EnrollmentID,
       student_id: row.StudentID,
-      course_id: row.CourseID,
       name: row.Name,
       school_name: row.SchoolName,
+      course_id: row.CourseID,
       course_name: row.CourseName,
       course_level: row.CourseLevel,
       enrollment_date: format(row.EnrollmentDate, 'dd-MM-yyyy'),
@@ -28,7 +28,7 @@ export class EnrollmentRepository {
   // get an enrollment
   async getEnrollmentById(id: string) {
     const query = `SELECT 
-      s.StudentID, s.Name, s.SchoolName, c.CourseName, c.CourseLevel, e.EnrollmentDate, e.Status
+      s.StudentID, s.Name, s.SchoolName, c.CourseID, c.CourseName, c.CourseLevel, e.EnrollmentDate, e.Status
       FROM Enrollment e
       JOIN Student s ON e.StudentID = s.StudentID 
       JOIN Course c ON e.CourseID = c.CourseID 
@@ -37,9 +37,9 @@ export class EnrollmentRepository {
     return rows.map((row: EnrollmentRow) => ({
       enrollment_id: row.EnrollmentID,
       student_id: row.StudentID,
-      course_id: row.CourseID,
       name: row.Name,
       school_name: row.SchoolName,
+      course_id: row.CourseID,
       course_name: row.CourseName,
       course_level: row.CourseLevel,
       enrollment_date: format(row.EnrollmentDate, 'dd-MM-yyyy'),
@@ -51,6 +51,6 @@ export class EnrollmentRepository {
   async createEnrollment(payload: CreateEnrollmentDto) {
     const query = `INSERT INTO Enrollment (StudentID, CourseID, EnrollmentDate, Status) values (?, ?, ?, ?);`
     const [result] = await dbPool.execute(query, [payload.studentId, payload.courseId, payload.enrollmentDate, payload.status])
-    return (result)
+    return "berhasil menambahkan enrollment"
   }
 }

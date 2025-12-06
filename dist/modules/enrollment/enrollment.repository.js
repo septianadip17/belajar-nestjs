@@ -12,15 +12,15 @@ const database_1 = require("../../config/database");
 const date_fns_1 = require("date-fns");
 let EnrollmentRepository = class EnrollmentRepository {
     async findAllEnrollments() {
-        const query = `SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID 
+        const query = `SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, c.CourseID, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID 
     JOIN Course  c ON e.CourseID  = c.CourseID`;
         const [rows] = await database_1.dbPool.query(query);
         return rows.map((row) => ({
             enrollment_id: row.EnrollmentID,
             student_id: row.StudentID,
-            course_id: row.CourseID,
             name: row.Name,
             school_name: row.SchoolName,
+            course_id: row.CourseID,
             course_name: row.CourseName,
             course_level: row.CourseLevel,
             enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
@@ -29,7 +29,7 @@ let EnrollmentRepository = class EnrollmentRepository {
     }
     async getEnrollmentById(id) {
         const query = `SELECT 
-      s.StudentID, s.Name, s.SchoolName, c.CourseName, c.CourseLevel, e.EnrollmentDate, e.Status
+      s.StudentID, s.Name, s.SchoolName, c.CourseID, c.CourseName, c.CourseLevel, e.EnrollmentDate, e.Status
       FROM Enrollment e
       JOIN Student s ON e.StudentID = s.StudentID 
       JOIN Course c ON e.CourseID = c.CourseID 
@@ -38,9 +38,9 @@ let EnrollmentRepository = class EnrollmentRepository {
         return rows.map((row) => ({
             enrollment_id: row.EnrollmentID,
             student_id: row.StudentID,
-            course_id: row.CourseID,
             name: row.Name,
             school_name: row.SchoolName,
+            course_id: row.CourseID,
             course_name: row.CourseName,
             course_level: row.CourseLevel,
             enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
@@ -50,7 +50,7 @@ let EnrollmentRepository = class EnrollmentRepository {
     async createEnrollment(payload) {
         const query = `INSERT INTO Enrollment (StudentID, CourseID, EnrollmentDate, Status) values (?, ?, ?, ?);`;
         const [result] = await database_1.dbPool.execute(query, [payload.studentId, payload.courseId, payload.enrollmentDate, payload.status]);
-        return (result);
+        return "berhasil menambahkan enrollment";
     }
 };
 exports.EnrollmentRepository = EnrollmentRepository;

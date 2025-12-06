@@ -1,6 +1,5 @@
 import { Body, Controller, Dependencies, Get, Param, Post } from "@nestjs/common";
 import { EnrollmentService } from "./enrollment.service";
-import { CreateCourseDto } from "../course/course.model";
 import { CreateEnrollmentDto } from "./enrollment.model";
 
 @Controller('enrollments')
@@ -24,4 +23,6 @@ export class EnrollmentController {
   async createEnrollment(@Body() payload: CreateEnrollmentDto){
     return this.enrollmentService.createEnrollment(payload)
   }
+
+
 }

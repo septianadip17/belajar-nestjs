@@ -6,9 +6,9 @@ export declare class EnrollmentService {
     findAllEnrollments(): Promise<{
         enrollment_id: number;
         student_id: number;
-        course_id: number;
         name: string;
         school_name: string;
+        course_id: number;
         course_name: string;
         course_level: string;
         enrollment_date: string;
@@ -17,13 +17,13 @@ export declare class EnrollmentService {
     getEnrollmentById(id: string): Promise<{
         enrollment_id: number;
         student_id: number;
-        course_id: number;
         name: string;
         school_name: string;
+        course_id: number;
         course_name: string;
         course_level: string;
         enrollment_date: string;
         status: string;
     }[]>;
-    createEnrollment(payload: CreateEnrollmentDto): Promise<import("mysql2").QueryResult>;
+    createEnrollment(payload: CreateEnrollmentDto): Promise<string>;
 }
