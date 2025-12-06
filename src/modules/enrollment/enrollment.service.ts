@@ -1,11 +1,13 @@
+import { StudentRepository } from './../student/student.repository';
+import { CourseRepository } from './../course/course.repository';
 import { BadRequestException, Dependencies, Injectable } from "@nestjs/common";
 import { EnrollmentRepository } from "./enrollment.repository";
 import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 
 @Injectable()
-@Dependencies(EnrollmentRepository)
+@Dependencies(EnrollmentRepository, CourseRepository, StudentRepository)
 export class EnrollmentService {
-  constructor(private enrollmentRepository: EnrollmentRepository) { }
+  constructor(private enrollmentRepository: EnrollmentRepository, private courseRepository: CourseRepository, private studentRepository: StudentRepository) { }
 
   // get all enrollments
   async findAllEnrollments() {
@@ -19,6 +21,15 @@ export class EnrollmentService {
 
   // create an enrollment
   async createEnrollment(payload: CreateEnrollmentDto) {
+    const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString())
+    const studentIdCheck = await this.studentRepository.getStudentById(payload.studentId.toString())
+    if (courseIdCheck.length == 0 && studentIdCheck.length == 0) {
+      throw new BadRequestException('Course ID and Student ID does not exist.');
+    } else if (studentIdCheck.length == 0) {
+      throw new BadRequestException('Student ID does not exist.');
+    } else if (courseIdCheck.length == 0 ) {
+      throw new BadRequestException('Course ID does not exist.');
+    }
     return await this.enrollmentRepository.createEnrollment(payload)
   }
 

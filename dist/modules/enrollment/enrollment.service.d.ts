@@ -1,8 +1,12 @@
+import { StudentRepository } from './../student/student.repository';
+import { CourseRepository } from './../course/course.repository';
 import { EnrollmentRepository } from "./enrollment.repository";
 import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 export declare class EnrollmentService {
     private enrollmentRepository;
-    constructor(enrollmentRepository: EnrollmentRepository);
+    private courseRepository;
+    private studentRepository;
+    constructor(enrollmentRepository: EnrollmentRepository, courseRepository: CourseRepository, studentRepository: StudentRepository);
     findAllEnrollments(): Promise<{
         enrollment_id: number;
         student_id: number;

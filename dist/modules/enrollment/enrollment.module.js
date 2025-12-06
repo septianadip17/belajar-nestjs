@@ -11,13 +11,15 @@ const common_1 = require("@nestjs/common");
 const enrollment_controller_1 = require("./enrollment.controller");
 const enrollment_service_1 = require("./enrollment.service");
 const enrollment_repository_1 = require("./enrollment.repository");
+const course_repository_1 = require("../course/course.repository");
+const student_repository_1 = require("../student/student.repository");
 let EnrollmentModule = class EnrollmentModule {
 };
 exports.EnrollmentModule = EnrollmentModule;
 exports.EnrollmentModule = EnrollmentModule = __decorate([
     (0, common_1.Module)({
         controllers: [enrollment_controller_1.EnrollmentController],
-        providers: [enrollment_service_1.EnrollmentService, enrollment_repository_1.EnrollmentRepository]
+        providers: [enrollment_service_1.EnrollmentService, enrollment_repository_1.EnrollmentRepository, course_repository_1.CourseRepository, student_repository_1.StudentRepository]
     })
 ], EnrollmentModule);
 //# sourceMappingURL=enrollment.module.js.map

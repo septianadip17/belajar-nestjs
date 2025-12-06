@@ -10,11 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnrollmentService = void 0;
+const student_repository_1 = require("./../student/student.repository");
+const course_repository_1 = require("./../course/course.repository");
 const common_1 = require("@nestjs/common");
 const enrollment_repository_1 = require("./enrollment.repository");
 let EnrollmentService = class EnrollmentService {
-    constructor(enrollmentRepository) {
+    constructor(enrollmentRepository, courseRepository, studentRepository) {
         this.enrollmentRepository = enrollmentRepository;
+        this.courseRepository = courseRepository;
+        this.studentRepository = studentRepository;
     }
     async findAllEnrollments() {
         return await this.enrollmentRepository.findAllEnrollments();
@@ -23,6 +27,17 @@ let EnrollmentService = class EnrollmentService {
         return await this.enrollmentRepository.getEnrollmentById(id);
     }
     async createEnrollment(payload) {
+        const courseIdCheck = await this.courseRepository.getCourseById(payload.courseId.toString());
+        const studentIdCheck = await this.studentRepository.getStudentById(payload.studentId.toString());
+        if (courseIdCheck.length == 0 && studentIdCheck.length == 0) {
+            throw new common_1.BadRequestException('Course ID and Student ID does not exist.');
+        }
+        else if (studentIdCheck.length == 0) {
+            throw new common_1.BadRequestException('Student ID does not exist.');
+        }
+        else if (courseIdCheck.length == 0) {
+            throw new common_1.BadRequestException('Course ID does not exist.');
+        }
         return await this.enrollmentRepository.createEnrollment(payload);
     }
     async deleteEnrollment(id) {
@@ -43,7 +58,7 @@ let EnrollmentService = class EnrollmentService {
 exports.EnrollmentService = EnrollmentService;
 exports.EnrollmentService = EnrollmentService = __decorate([
     (0, common_1.Injectable)(),
-    (0, common_1.Dependencies)(enrollment_repository_1.EnrollmentRepository),
-    __metadata("design:paramtypes", [enrollment_repository_1.EnrollmentRepository])
+    (0, common_1.Dependencies)(enrollment_repository_1.EnrollmentRepository, course_repository_1.CourseRepository, student_repository_1.StudentRepository),
+    __metadata("design:paramtypes", [enrollment_repository_1.EnrollmentRepository, course_repository_1.CourseRepository, student_repository_1.StudentRepository])
 ], EnrollmentService);
 //# sourceMappingURL=enrollment.service.js.map
