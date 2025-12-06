@@ -8,21 +8,23 @@ import { CreateEnrollmentDto, EditEnrollmentDto } from "./enrollment.model";
 export class EnrollmentRepository {
 
   // get all enrollments
-  async findAllEnrollments() {
+  async findAllEnrollments(){
     const query = `SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, c.CourseID, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID 
     JOIN Course  c ON e.CourseID  = c.CourseID`
     const [rows] = await dbPool.query(query) as [EnrollmentRow[], any]
-    return rows.map((row: EnrollmentRow) => ({
-      enrollment_id: row.EnrollmentID,
-      student_id: row.StudentID,
-      name: row.Name,
-      school_name: row.SchoolName,
-      course_id: row.CourseID,
-      course_name: row.CourseName,
-      course_level: row.CourseLevel,
-      enrollment_date: format(row.EnrollmentDate, 'dd-MM-yyyy'),
-      status: row.Status
-    }))
+    return rows.map((row: EnrollmentRow) => {
+      return {
+        enrollment_id: row.EnrollmentID,
+        student_id: row.StudentID,
+        name: row.Name,
+        school_name: row.SchoolName,
+        course_id: row.CourseID,
+        course_name: row.CourseName,
+        course_level: row.CourseLevel,
+        enrollment_date: format(row.EnrollmentDate, 'dd-MM-yyyy'),
+        status: row.Status
+      }
+    })
   }
 
   // get an enrollment
@@ -34,7 +36,12 @@ export class EnrollmentRepository {
       JOIN Course c ON e.CourseID = c.CourseID 
       WHERE e.EnrollmentID = ?`
     const [rows] = await dbPool.query(query, [id]) as [EnrollmentRow[], any]
-    return rows.map((row: EnrollmentRow) => ({
+    if (rows.length === 0) {
+      return null; // or throw an error if preferred
+    }
+
+    const row = rows[0];
+    return {
       enrollment_id: row.EnrollmentID,
       student_id: row.StudentID,
       name: row.Name,
@@ -43,8 +50,9 @@ export class EnrollmentRepository {
       course_name: row.CourseName,
       course_level: row.CourseLevel,
       enrollment_date: format(row.EnrollmentDate, 'dd-MM-yyyy'),
-      status: row.Status
-    }))
+      status: row.Status,
+      message: "It's working"
+    };
   }
 
   // create an enrollment

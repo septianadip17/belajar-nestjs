@@ -28,7 +28,8 @@ export declare class EnrollmentService {
         course_level: string;
         enrollment_date: string;
         status: string;
-    }[]>;
+        message: string;
+    } | null>;
     createEnrollment(payload: CreateEnrollmentDto): Promise<string>;
     deleteEnrollment(id: string): Promise<string>;
     editEnrollment(id: string, payload: EditEnrollmentDto): Promise<string>;

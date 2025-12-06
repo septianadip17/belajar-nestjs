@@ -15,17 +15,19 @@ let EnrollmentRepository = class EnrollmentRepository {
         const query = `SELECT s.Name, s.SchoolName, c.CourseName, c.CourseLevel, c.CourseID, e.StudentID, e.EnrollmentDate, e.EnrollmentID, e.Status FROM Enrollment e JOIN Student s ON e.StudentID = s.StudentID 
     JOIN Course  c ON e.CourseID  = c.CourseID`;
         const [rows] = await database_1.dbPool.query(query);
-        return rows.map((row) => ({
-            enrollment_id: row.EnrollmentID,
-            student_id: row.StudentID,
-            name: row.Name,
-            school_name: row.SchoolName,
-            course_id: row.CourseID,
-            course_name: row.CourseName,
-            course_level: row.CourseLevel,
-            enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
-            status: row.Status
-        }));
+        return rows.map((row) => {
+            return {
+                enrollment_id: row.EnrollmentID,
+                student_id: row.StudentID,
+                name: row.Name,
+                school_name: row.SchoolName,
+                course_id: row.CourseID,
+                course_name: row.CourseName,
+                course_level: row.CourseLevel,
+                enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
+                status: row.Status
+            };
+        });
     }
     async getEnrollmentById(id) {
         const query = `SELECT 
@@ -35,7 +37,11 @@ let EnrollmentRepository = class EnrollmentRepository {
       JOIN Course c ON e.CourseID = c.CourseID 
       WHERE e.EnrollmentID = ?`;
         const [rows] = await database_1.dbPool.query(query, [id]);
-        return rows.map((row) => ({
+        if (rows.length === 0) {
+            return null;
+        }
+        const row = rows[0];
+        return {
             enrollment_id: row.EnrollmentID,
             student_id: row.StudentID,
             name: row.Name,
@@ -44,8 +50,9 @@ let EnrollmentRepository = class EnrollmentRepository {
             course_name: row.CourseName,
             course_level: row.CourseLevel,
             enrollment_date: (0, date_fns_1.format)(row.EnrollmentDate, 'dd-MM-yyyy'),
-            status: row.Status
-        }));
+            status: row.Status,
+            message: "It's working"
+        };
     }
     async createEnrollment(payload) {
         const query = `INSERT INTO Enrollment (StudentID, CourseID, EnrollmentDate, Status) values (?, ?, ?, ?);`;
